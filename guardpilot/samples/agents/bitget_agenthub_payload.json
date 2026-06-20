@@ -1,0 +1,12 @@
+{
+  "source": "Bitget Agent Hub / Playbook style signal",
+  "timestamp": "2026-06-20T10:08:00Z",
+  "agent_id": "bitget_playbook_momentum_agent",
+  "symbol": "BTCUSDT",
+  "side": "BUY",
+  "order_type": "MARKET",
+  "quantity": 0.08,
+  "leverage": 8,
+  "confidence": 0.61,
+  "reason": "Playbook detected breakout recovery signal, but recent losses and volatility require pre-trade guardrail review"
+}

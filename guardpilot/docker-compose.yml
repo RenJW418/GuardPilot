@@ -1,0 +1,25 @@
+services:
+  api:
+    image: python:3.11-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh -c "pip install -e apps/api && uvicorn guardpilot.main:app --app-dir apps/api --host 0.0.0.0 --port 8000"
+    ports:
+      - "8000:8000"
+    environment:
+      - GUARDPILOT_DB_PATH=/app/guardpilot.db
+      - GUARDPILOT_LOG_DIR=/app/samples/outputs
+
+  web:
+    image: node:20-slim
+    working_dir: /app/apps/web
+    volumes:
+      - .:/app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000
+    depends_on:
+      - api

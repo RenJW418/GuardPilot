@@ -1,0 +1,12 @@
+profile: default
+max_leverage: 5
+warn_leverage: 3
+max_single_notional_ratio: 0.35
+warn_single_notional_ratio: 0.22
+max_symbol_exposure_ratio: 0.55
+daily_loss_limit: 0.06
+max_consecutive_losses: 3
+max_trades_per_15m: 8
+volatility_warn: 0.018
+volatility_block: 0.035
+min_confidence: 0.35

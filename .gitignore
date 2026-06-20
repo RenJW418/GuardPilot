@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Local runtime artifacts
+guardpilot/guardpilot.db
+guardpilot/.api-dev.log
+guardpilot/.web-dev.log
+*.log
+
+# Local docs / competition brief
+比赛要求.md
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+.env
+*.pem
+*.key

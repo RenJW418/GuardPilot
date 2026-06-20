@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>GuardPilot Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 40px; background: #0f172a; color: #e2e8f0; }
+    .card { background: #111827; border: 1px solid #334155; border-radius: 16px; padding: 20px; margin: 16px 0; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .metric { background: #1e293b; padding: 16px; border-radius: 12px; }
+    .label { color: #94a3b8; font-size: 12px; text-transform: uppercase; }
+    .value { font-size: 24px; font-weight: 700; margin-top: 8px; }
+    .positive { color: #86efac; }
+  </style>
+</head>
+<body>
+  <h1>GuardPilot Replay Report</h1>
+  <p>Scenario: btc_momentum_crash · Agent: demo_momentum_agent</p>
+  <div class="grid">
+    <div class="metric"><div class="label">Equity Improvement</div><div class="value positive">+50.0973 USDT</div></div>
+    <div class="metric"><div class="label">Drawdown Reduction</div><div class="value positive">1.9022 pts</div></div>
+    <div class="metric"><div class="label">Blocked Intent Rate</div><div class="value">52.4%</div></div>
+    <div class="metric"><div class="label">Audit Records</div><div class="value">110</div></div>
+  </div>
+  <div class="grid">
+    <div class="metric"><div class="label">Final Equity With Guard</div><div class="value">9980.9074</div></div>
+    <div class="metric"><div class="label">Final Equity Without Guard</div><div class="value">9930.81</div></div>
+    <div class="metric"><div class="label">Blocked</div><div class="value">22</div></div>
+    <div class="metric"><div class="label">Risk Grade</div><div class="value">B</div></div>
+  </div>
+  <div class="card">
+    <h2>Why GuardPilot Helped</h2>
+    <p>In this deterministic scenario, GuardPilot reduced max drawdown from 2.60% to 0.70% while generating a complete trade/API/risk-event audit trail.</p>
+  </div>
+  <div class="card">
+    <h2>Top Risk Findings</h2>
+    <ul><li>Blocked 22 high-risk intents before simulated execution</li><li>Flagged 4 elevated-risk intents for audit</li><li>Single trade notional is 52.2% of equity</li><li>Single trade notional is 41.8% of equity</li><li>Single trade notional is 47.0% of equity</li></ul>
+  </div>
+  <div class="card">
+    <h2>Audit Evidence</h2>
+    <p>Trade log: samples/outputs/sample_trade_log.jsonl</p>
+    <p>API call log: samples/outputs/sample_api_calls.jsonl</p>
+  </div>
+</body>
+</html>

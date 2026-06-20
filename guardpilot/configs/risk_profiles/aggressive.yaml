@@ -1,0 +1,12 @@
+profile: aggressive
+max_leverage: 8
+warn_leverage: 5
+max_single_notional_ratio: 0.5
+warn_single_notional_ratio: 0.34
+max_symbol_exposure_ratio: 0.75
+daily_loss_limit: 0.1
+max_consecutive_losses: 4
+max_trades_per_15m: 12
+volatility_warn: 0.025
+volatility_block: 0.045
+min_confidence: 0.25

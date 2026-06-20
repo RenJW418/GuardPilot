@@ -1,0 +1,15 @@
+{
+  "name": "bitget-guardpilot-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Root workspace launcher for the GuardPilot Bitget hackathon project.",
+  "scripts": {
+    "dev": "bash scripts/dev.sh",
+    "dev:api": "cd guardpilot && PYTHONPATH=apps/api python3 -m uvicorn guardpilot.main:app --app-dir apps/api --reload --port 8000",
+    "dev:web": "npm --prefix guardpilot/apps/web run dev",
+    "replay": "cd guardpilot && python3 scripts/replay.py --scenario samples/scenarios/btc_momentum_crash.json",
+    "test": "cd guardpilot && PYTHONPATH=apps/api python3 -m pytest apps/api/guardpilot/tests",
+    "build": "npm --prefix guardpilot/apps/web run build",
+    "record:demo": "bash scripts/record-demo.sh 180"
+  }
+}

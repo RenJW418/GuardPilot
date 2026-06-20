@@ -1,0 +1,12 @@
+profile: conservative
+max_leverage: 3
+warn_leverage: 2
+max_single_notional_ratio: 0.22
+warn_single_notional_ratio: 0.14
+max_symbol_exposure_ratio: 0.4
+daily_loss_limit: 0.035
+max_consecutive_losses: 2
+max_trades_per_15m: 5
+volatility_warn: 0.012
+volatility_block: 0.025
+min_confidence: 0.45

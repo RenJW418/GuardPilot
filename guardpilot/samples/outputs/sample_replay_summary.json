@@ -1,0 +1,20 @@
+{
+  "scenario_id": "btc_momentum_crash",
+  "total_intents": 42,
+  "allowed": 16,
+  "warned": 4,
+  "blocked": 22,
+  "final_equity_with_guard": 9980.9074,
+  "final_equity_without_guard": 9930.81,
+  "max_drawdown_with_guard": 0.006996,
+  "max_drawdown_without_guard": 0.026018,
+  "risk_grade": "B",
+  "impact_metrics": {
+    "equity_improvement_usdt": 50.0973,
+    "max_drawdown_reduction_points": 1.9022,
+    "max_drawdown_reduction_relative": 0.7311,
+    "blocked_intent_rate": 0.5238,
+    "audit_records_generated": 110
+  },
+  "report_path": "samples/outputs/sample_risk_report.json"
+}

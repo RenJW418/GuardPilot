@@ -1,0 +1,14 @@
+{
+  "scenario_id": "eth_overtrade",
+  "initial_balance": 10000,
+  "market_data": "samples/market/ethusdt_1m.csv",
+  "agent_signals": "samples/agents/risky_agent_signals.jsonl",
+  "risk_profile": "configs/risk_profiles/conservative.yaml",
+  "outputs": {
+    "trade_log": "samples/outputs/sample_trade_log.jsonl",
+    "api_calls": "samples/outputs/sample_api_calls.jsonl",
+    "risk_report": "samples/outputs/sample_risk_report.json",
+    "risk_events": "samples/outputs/sample_risk_events.jsonl",
+    "summary": "samples/outputs/sample_replay_summary.json"
+  }
+}
