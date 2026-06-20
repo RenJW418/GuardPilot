@@ -5,6 +5,8 @@ GuardPilot is a risk gateway and paper trading evaluation sandbox for autonomous
 It is built for the **Bitget AI Base Camp Hackathon S1 · Trading Infra** track. Instead of letting an Agent directly place orders, GuardPilot evaluates each trade intent with behavior-aware risk rules, simulates execution in a paper trading environment, records auditable logs, and generates reproducible risk reports.
 
 > Paper trading only. This project is for hackathon evaluation and does not provide financial advice.
+>
+> **Data note:** the included evidence uses deterministic sample market data, sample Agent intents, and paper-trading simulation. It is not a live exchange execution record. The value is demonstrated through a reproducible A/B comparison between the same Agent stream without guardrails and with GuardPilot enabled.
 
 ## Judge Quickstart
 
@@ -12,6 +14,7 @@ If you are reviewing from the repository root (`20260620_bitget`), run:
 
 ```bash
 npm run replay
+npm run evidence
 npm run dev
 ```
 
