@@ -3,6 +3,7 @@ from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from guardpilot.api.routes_agents import router as agents_router
 from guardpilot.api.routes_bitget import router as bitget_router
 from guardpilot.api.routes_health import router as health_router
 from guardpilot.api.routes_intents import router as intents_router
