@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import shutil
 from dataclasses import asdict
@@ -173,6 +174,8 @@ class ReplayEngine:
             "risk_event_log_path": str(output_paths.get("risk_events", log_dir / "sample_risk_events.jsonl").relative_to(self.root_dir)),
         }
 
+        manifest_path = output_paths["summary"].parent / "evidence_manifest.json"
+        report["evidence_manifest_path"] = str(manifest_path.relative_to(self.root_dir))
         output_paths["risk_report"].write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
         summary = {
             "scenario_id": scenario["scenario_id"],
@@ -187,8 +190,19 @@ class ReplayEngine:
             "risk_grade": report["risk_grade"],
             "impact_metrics": impact_metrics,
             "report_path": str(output_paths["risk_report"].relative_to(self.root_dir)),
+            "evidence_manifest_path": str(manifest_path.relative_to(self.root_dir)),
         }
         output_paths["summary"].write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
+        manifest = self._build_evidence_manifest(
+            scenario=scenario,
+            scenario_file=scenario_file,
+            market_file=self._resolve(scenario["market_data"]),
+            signals_file=self._resolve(scenario["agent_signals"]),
+            profile_file=self._resolve(scenario["risk_profile"]),
+            output_paths=output_paths,
+            report=report,
+        )
+        manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
 
         reports_dir = self.root_dir / "reports"
         reports_dir.mkdir(parents=True, exist_ok=True)
@@ -200,8 +214,80 @@ class ReplayEngine:
     def _resolve(self, path: str | Path) -> Path:
         path = Path(path)
         if path.is_absolute():
-            return path
-        return self.root_dir / path
+            raise ValueError(f"Absolute paths are not allowed in replay scenarios: {path}")
+        resolved = (self.root_dir / path).resolve()
+        root = self.root_dir.resolve()
+        if resolved != root and root not in resolved.parents:
+            raise ValueError(f"Replay path escapes project root: {path}")
+        return resolved
+
+    def _build_evidence_manifest(
+        self,
+        *,
+        scenario: dict[str, Any],
+        scenario_file: Path,
+        market_file: Path,
+        signals_file: Path,
+        profile_file: Path,
+        output_paths: dict[str, Path],
+        report: dict[str, Any],
+    ) -> dict[str, Any]:
+        evidence_files = {
+            "scenario": scenario_file,
+            "market_data": market_file,
+            "agent_signals": signals_file,
+            "risk_profile": profile_file,
+            "trade_log": output_paths["trade_log"],
+            "api_calls": output_paths["api_calls"],
+            "risk_events": output_paths.get("risk_events", output_paths["trade_log"].parent / "sample_risk_events.jsonl"),
+            "risk_report": output_paths["risk_report"],
+            "summary": output_paths["summary"],
+        }
+        files = {}
+        for key, path in evidence_files.items():
+            files[key] = {
+                "path": str(path.relative_to(self.root_dir)),
+                "sha256": self._sha256(path),
+                "bytes": path.stat().st_size,
+            }
+            if path.suffix == ".jsonl":
+                files[key]["rows"] = self._count_nonempty_lines(path)
+            elif path.suffix == ".csv":
+                files[key]["rows"] = self._count_csv_rows(path)
+
+        return {
+            "generated_at": datetime.utcnow().isoformat(timespec="seconds") + "Z",
+            "scenario_id": scenario["scenario_id"],
+            "initial_balance": scenario["initial_balance"],
+            "totals": {
+                "total_intents": report["total_intents"],
+                "allowed": report["allowed"],
+                "warned": report["warned"],
+                "blocked": report["blocked"],
+                "risk_events": len(report["risk_events"]),
+                "audit_records_generated": report["impact_metrics"]["audit_records_generated"],
+            },
+            "impact_metrics": report["impact_metrics"],
+            "files": files,
+        }
+
+    @staticmethod
+    def _sha256(path: Path) -> str:
+        digest = hashlib.sha256()
+        with path.open("rb") as handle:
+            for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+                digest.update(chunk)
+        return digest.hexdigest()
+
+    @staticmethod
+    def _count_nonempty_lines(path: Path) -> int:
+        with path.open("r", encoding="utf-8") as handle:
+            return sum(1 for line in handle if line.strip())
+
+    @staticmethod
+    def _count_csv_rows(path: Path) -> int:
+        with path.open("r", encoding="utf-8") as handle:
+            return max(sum(1 for _ in handle) - 1, 0)
 
     def _ensure_sample_inputs(self, scenario: dict[str, Any]) -> None:
         market_path = self._resolve(scenario["market_data"])

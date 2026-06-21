@@ -97,6 +97,13 @@ GuardPilot 解决的是 **Agentic Trading 上线前最后一道安全闸门**。
 
 ### 6. 快速运行
 
+首次运行建议先安装依赖：
+
+```bash
+pip install -e guardpilot/apps/api
+npm install --prefix guardpilot/apps/web
+```
+
 从仓库根目录运行：
 
 ```bash
@@ -152,7 +159,31 @@ curl -X POST http://localhost:8000/api/v1/intents \
 }
 ```
 
-### 8. 可复现证据文件
+### 8. 5 分钟接入方式
+
+对已有交易 Agent，最简单的集成方式是在原本下单前增加一次 GuardPilot 检查：
+
+```python
+risk = post("http://localhost:8000/api/v1/intents", json=trade_intent)
+if risk["decision"] == "BLOCK":
+    stop_order()
+elif risk["decision"] == "WARN":
+    reduce_size_or_require_review()
+else:
+    forward_to_execution()
+```
+
+对于 Bitget Agent Hub / Playbook 风格 payload，也可以先调用 dry-run endpoint：
+
+```bash
+curl -X POST http://localhost:8000/api/v1/bitget/dry-run \
+  -H 'Content-Type: application/json' \
+  --data @guardpilot/samples/agents/bitget_agenthub_payload.json
+```
+
+GuardPilot 会先执行风险评估；只有 `ALLOW/WARN` 才返回 Bitget-ready dry-run payload，`BLOCK` 不会生成转发 payload。
+
+### 9. 可复现证据文件
 
 项目内置了提交和评审可用的证据文件：
 
@@ -165,7 +196,7 @@ curl -X POST http://localhost:8000/api/v1/intents \
 - `guardpilot/reports/demo_report.html`：HTML 报告
 - `guardpilot/reports/guardpilot-demo.mov`：Demo 视频
 
-### 9. 项目结构
+### 10. 项目结构
 
 ```text
 .
@@ -182,7 +213,7 @@ curl -X POST http://localhost:8000/api/v1/intents \
     └── scripts/                      # replay / export / seed 脚本
 ```
 
-### 10. 风险提示
+### 11. 风险提示
 
 本项目仅用于 Hackathon 展示、paper trading 和工程评估，不提供任何投资建议，也不会默认连接真实交易执行。当前结果是基于确定性样本行情和样本 Agent 意图的可复现实验，不应表述为真实交易所实盘成绩。真实交易所接入应在明确授权、充分测试和严格风控配置后进行。
 
@@ -261,6 +292,13 @@ In this deterministic replay, GuardPilot reduces max drawdown from `2.60%` to `0
 
 ### 6. Quick Start
 
+Install dependencies on first use:
+
+```bash
+pip install -e guardpilot/apps/api
+npm install --prefix guardpilot/apps/web
+```
+
 From the repository root:
 
 ```bash
@@ -316,7 +354,31 @@ Example response:
 }
 ```
 
-### 8. Reproducible Evidence
+### 8. Integrate in 5 Minutes
+
+For an existing trading Agent, add one GuardPilot check before the original execution call:
+
+```python
+risk = post("http://localhost:8000/api/v1/intents", json=trade_intent)
+if risk["decision"] == "BLOCK":
+    stop_order()
+elif risk["decision"] == "WARN":
+    reduce_size_or_require_review()
+else:
+    forward_to_execution()
+```
+
+For Bitget Agent Hub / Playbook style payloads, use the dry-run endpoint:
+
+```bash
+curl -X POST http://localhost:8000/api/v1/bitget/dry-run \
+  -H 'Content-Type: application/json' \
+  --data @guardpilot/samples/agents/bitget_agenthub_payload.json
+```
+
+GuardPilot evaluates risk first. Only `ALLOW/WARN` returns a Bitget-ready dry-run payload; `BLOCK` returns no forwarding payload.
+
+### 9. Reproducible Evidence
 
 The repository includes review-ready evidence files:
 
@@ -329,7 +391,7 @@ The repository includes review-ready evidence files:
 - `guardpilot/reports/demo_report.html` — HTML report
 - `guardpilot/reports/guardpilot-demo.mov` — demo video
 
-### 9. Repository Layout
+### 10. Repository Layout
 
 ```text
 .

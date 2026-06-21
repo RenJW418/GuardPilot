@@ -28,6 +28,7 @@ app.add_middleware(
 
 app.include_router(health_router)
 app.include_router(intents_router)
+app.include_router(bitget_router)
 app.include_router(agents_router)
 app.include_router(trades_router)
 app.include_router(reports_router)

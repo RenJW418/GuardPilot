@@ -16,5 +16,6 @@
     "blocked_intent_rate": 0.5238,
     "audit_records_generated": 110
   },
-  "report_path": "samples/outputs/sample_risk_report.json"
+  "report_path": "samples/outputs/sample_risk_report.json",
+  "evidence_manifest_path": "samples/outputs/evidence_manifest.json"
 }

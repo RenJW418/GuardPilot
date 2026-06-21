@@ -29,6 +29,13 @@ export type ApiLog = {
   risk_score: number;
 };
 
+export type RiskCheck = {
+  name: string;
+  status: string;
+  score: number;
+  message: string;
+};
+
 export type RiskEvent = {
   id?: number;
   timestamp: string;
@@ -38,6 +45,7 @@ export type RiskEvent = {
   risk_score: number;
   risk_level: string;
   message: string;
+  checks?: RiskCheck[];
 };
 
 export type AgentSummary = {

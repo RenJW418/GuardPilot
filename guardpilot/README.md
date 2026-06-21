@@ -10,7 +10,14 @@ It is built for the **Bitget AI Base Camp Hackathon S1 · Trading Infra** track.
 
 ## Judge Quickstart
 
-If you are reviewing from the repository root (`20260620_bitget`), run:
+If you are reviewing from the repository root (`20260620_bitget`), install dependencies once:
+
+```bash
+pip install -e guardpilot/apps/api
+npm install --prefix guardpilot/apps/web
+```
+
+Then run:
 
 ```bash
 npm run replay
@@ -36,7 +43,7 @@ Expected replay result for the default scenario:
 | Max drawdown without GuardPilot | 2.60% |
 | Risk grade after guardrails | B |
 
-`POST /api/v1/replay` also writes the replayed trades, API calls, and risk events into SQLite so the Dashboard tables show the full 42-intent audit trail after clicking **Run Replay**.
+`POST /api/v1/replay` also writes the replayed trades, API calls, risk events, and `samples/outputs/evidence_manifest.json` so reviewers can verify SHA-256 hashes, JSONL row counts, and the full 42-intent audit trail after clicking **Run Replay**.
 
 ## Why GuardPilot
 
@@ -263,7 +270,13 @@ curl -X POST http://localhost:8000/api/v1/intents \
   --data @samples/agents/bitget_agenthub_payload.json
 ```
 
-In a live Bitget setup, GuardPilot acts as the pre-trade gate:
+In a live Bitget setup, GuardPilot acts as the pre-trade gate. The dry-run endpoint now evaluates risk first; only `ALLOW` or `WARN` returns a Bitget-ready dry-run payload, while `BLOCK` returns `bitget_dry_run: null` and no forwarding payload.
+
+```bash
+curl -X POST http://localhost:8000/api/v1/bitget/dry-run \
+  -H 'Content-Type: application/json' \
+  --data @samples/agents/bitget_agenthub_payload.json
+```
 
 ```text
 Agent Hub / Playbook signal -> GuardPilot risk score -> ALLOW/WARN/BLOCK -> optional Bitget order tool forwarding

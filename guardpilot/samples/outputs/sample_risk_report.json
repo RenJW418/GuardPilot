@@ -1517,5 +1517,6 @@
   ],
   "trade_log_path": "samples/outputs/sample_trade_log.jsonl",
   "api_call_log_path": "samples/outputs/sample_api_calls.jsonl",
-  "risk_event_log_path": "samples/outputs/sample_risk_events.jsonl"
+  "risk_event_log_path": "samples/outputs/sample_risk_events.jsonl",
+  "evidence_manifest_path": "samples/outputs/evidence_manifest.json"
 }

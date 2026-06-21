@@ -10,10 +10,34 @@ from guardpilot.core.replay_engine import ReplayEngine
 
 router = APIRouter(prefix="/api/v1", tags=["replay"])
 
+SCENARIOS = {
+    "btc_momentum_crash": "samples/scenarios/btc_momentum_crash.json",
+    "eth_overtrade": "samples/scenarios/eth_overtrade.json",
+}
+
+
+def _scenario_path(scenario: str) -> str:
+    if scenario in SCENARIOS:
+        return SCENARIOS[scenario]
+    candidate = Path(scenario)
+    if candidate.suffix == ".json" and candidate.parent.as_posix() == "samples/scenarios" and candidate.stem in SCENARIOS:
+        return SCENARIOS[candidate.stem]
+    raise HTTPException(
+        status_code=400,
+        detail=f"Unknown replay scenario '{scenario}'. Allowed values: {', '.join(sorted(SCENARIOS))}",
+    )
+
 
 @router.post("/replay")
-def replay(scenario: str = "samples/scenarios/btc_momentum_crash.json") -> dict:
-    return ReplayEngine(ROOT_DIR).run(scenario)
+def replay(scenario: str = "btc_momentum_crash") -> dict:
+    try:
+        return ReplayEngine(ROOT_DIR).run(_scenario_path(scenario))
+    except HTTPException:
+        raise
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @router.get("/reports/{report_id}")

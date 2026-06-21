@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-06-21T07:19:19Z",
+  "scenario_id": "btc_momentum_crash",
+  "initial_balance": 10000,
+  "totals": {
+    "total_intents": 42,
+    "allowed": 16,
+    "warned": 4,
+    "blocked": 22,
+    "risk_events": 26,
+    "audit_records_generated": 110
+  },
+  "impact_metrics": {
+    "equity_improvement_usdt": 50.0973,
+    "max_drawdown_reduction_points": 1.9022,
+    "max_drawdown_reduction_relative": 0.7311,
+    "blocked_intent_rate": 0.5238,
+    "audit_records_generated": 110
+  },
+  "files": {
+    "scenario": {
+      "path": "samples/scenarios/btc_momentum_crash.json",
+      "sha256": "663f5d91546f1851630f7160083046c5dd088d5846c23ea9e3eff0feff17d709",
+      "bytes": 564
+    },
+    "market_data": {
+      "path": "samples/market/btcusdt_1m.csv",
+      "sha256": "d602de0e5a470e4d572bacd89b2002c836dcf82251541748297f00bbf6b07c07",
+      "bytes": 3644,
+      "rows": 50
+    },
+    "agent_signals": {
+      "path": "samples/agents/demo_momentum_signals.jsonl",
+      "sha256": "1daa87a505433197df2dfb7f6c75dff3da104a1316b9ae7f1d183e655d14d10d",
+      "bytes": 9796,
+      "rows": 42
+    },
+    "risk_profile": {
+      "path": "configs/risk_profiles/default.yaml",
+      "sha256": "022f5a4c5539dbb98477247ea8f47c9ae13cfac26964b5a1b01242cacb27e7e8",
+      "bytes": 286
+    },
+    "trade_log": {
+      "path": "samples/outputs/sample_trade_log.jsonl",
+      "sha256": "0a087d1cda4216733626b80d3db896eff497f741be61d8f73475e03692fc67a8",
+      "bytes": 15354,
+      "rows": 42
+    },
+    "api_calls": {
+      "path": "samples/outputs/sample_api_calls.jsonl",
+      "sha256": "6148e55f7ace9a24085a70e9e01d16827592259272bf0638277529d3e8ef9edc",
+      "bytes": 7561,
+      "rows": 42
+    },
+    "risk_events": {
+      "path": "samples/outputs/sample_risk_events.jsonl",
+      "sha256": "34821f7987870fc755480b4a70d530cfb1f2541d5065a87f19fbdfe4267251b0",
+      "bytes": 20896,
+      "rows": 26
+    },
+    "risk_report": {
+      "path": "samples/outputs/sample_risk_report.json",
+      "sha256": "450011051f1d07da3fea4fd7de60049f8c4e209232097decde91cb3ef91c29fa",
+      "bytes": 40684
+    },
+    "summary": {
+      "path": "samples/outputs/sample_replay_summary.json",
+      "sha256": "eee88d8312c04383946b53845d23f205a16d548be7ff92ce6abc0ed8e12c4f7a",
+      "bytes": 655
+    }
+  }
+}

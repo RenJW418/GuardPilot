@@ -119,9 +119,25 @@ The replay generates reviewable artifacts:
 - `samples/outputs/sample_trade_log.jsonl`
 - `samples/outputs/sample_risk_events.jsonl`
 - `samples/outputs/sample_risk_report.json`
+- `samples/outputs/evidence_manifest.json`
 - `reports/demo_report.html`
 
 These files let a reviewer inspect the exact decisions, reasons, risk scores, and simulated execution outcomes.
+
+### 5. GuardPilot makes the evidence tamper-checkable
+
+Each replay writes `samples/outputs/evidence_manifest.json`. The manifest records SHA-256 hashes, byte sizes, and row counts for the scenario file, market data, Agent signal stream, risk profile, API logs, trade logs, risk events, report, and summary.
+
+`npm run evidence` verifies that:
+
+- Manifest hashes match the current files.
+- JSONL row counts match the replay totals.
+- API log rows equal total intents.
+- Trade log rows equal total intents.
+- Risk event rows equal `WARN + BLOCK`.
+- Summary, report, and manifest agree on the scenario and headline metrics.
+
+This makes the evidence pack stronger than a screenshot: reviewers can rerun the scenario and verify that the artifacts match the reported results.
 
 ---
 
