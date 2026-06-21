@@ -40,4 +40,3 @@
 {"timestamp":"2026-06-20T10:40:00Z","method":"POST","path":"/api/v1/intents","agent_id":"demo_momentum_agent","status_code":200,"latency_ms":19,"decision":"ALLOW","risk_score":60}
 {"timestamp":"2026-06-20T10:41:00Z","method":"POST","path":"/api/v1/intents","agent_id":"demo_momentum_agent","status_code":200,"latency_ms":20,"decision":"ALLOW","risk_score":60}
 {"timestamp":"2026-06-20T10:42:00Z","method":"POST","path":"/api/v1/intents","agent_id":"demo_momentum_agent","status_code":200,"latency_ms":21,"decision":"BLOCK","risk_score":96}
-{"timestamp":"2026-06-20T10:08:00Z","method":"POST","path":"/api/v1/bitget/dry-run","agent_id":"bitget_playbook_momentum_agent","status_code":200,"latency_ms":1,"decision":"WARN","risk_score":70}

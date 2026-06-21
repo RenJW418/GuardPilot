@@ -55,3 +55,62 @@ export type AgentSummary = {
   pnl: number;
   average_risk_score: number;
 };
+
+export type ReplayScenario = 'btc_momentum_crash' | 'eth_overtrade';
+
+export type ImpactMetrics = {
+  equity_improvement_usdt: number;
+  max_drawdown_reduction_points: number;
+  max_drawdown_reduction_relative: number;
+  blocked_intent_rate: number;
+  audit_records_generated: number;
+};
+
+export type RiskReport = {
+  report_id: string;
+  scenario_id: string;
+  agent_id: string;
+  initial_balance: number;
+  final_equity_without_guard: number;
+  final_equity_with_guard: number;
+  max_drawdown_without_guard: number;
+  max_drawdown_with_guard: number;
+  total_intents: number;
+  allowed: number;
+  warned: number;
+  blocked: number;
+  risk_grade: string;
+  average_risk_score: number;
+  residual_risk_score_after_guard: number;
+  impact_metrics: ImpactMetrics;
+  win_rate?: number;
+  profit_factor?: number;
+  sharpe_like?: number;
+  equity_curve?: Array<{ timestamp: string; equity: number }>;
+  risk_events: RiskEvent[];
+  top_risk_findings: string[];
+  trade_log_path: string;
+  api_call_log_path: string;
+  risk_event_log_path: string;
+  evidence_manifest_path: string;
+};
+
+export type ReplaySummary = {
+  scenario_id: string;
+  total_intents: number;
+  allowed: number;
+  warned: number;
+  blocked: number;
+  final_equity_with_guard: number;
+  final_equity_without_guard: number;
+  max_drawdown_with_guard: number;
+  max_drawdown_without_guard: number;
+  risk_grade: string;
+  impact_metrics: ImpactMetrics;
+  report_path: string;
+  evidence_manifest_path: string;
+  risk_report?: RiskReport;
+  trades?: Trade[];
+  api_calls?: ApiLog[];
+  risk_events?: RiskEvent[];
+};

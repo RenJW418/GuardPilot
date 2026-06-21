@@ -1,5 +1,15 @@
 # Submission Checklist
 
+## Final Submission Fields
+
+- [x] Public GitHub repository: `https://github.com/RenJW418/GuardPilot`
+- [ ] Demo video public URL: `TODO: upload reports/guardpilot-demo.mov or publish a public video link`
+- [ ] Public dashboard deployment URL, optional: `TODO: add if deployed`
+- [ ] X/Twitter development post URL with `#BitgetHackathon` and `@Bitget_AI`: `TODO`
+- [ ] Bitget registration UID confirmed: `TODO: confirm same UID as registration`
+- [ ] Submission form completed: `https://forms.gle/GDQNx5TnCBvYuPin9`
+- [ ] Final commit hash or release tag: `TODO`
+
 ## Required for Trading Infra
 
 - [x] Public GitHub repository: `https://github.com/RenJW418/GuardPilot`
@@ -37,7 +47,8 @@ Expected proof points from `npm run evidence`:
 
 ## Strongly Recommended
 
-- [x] Public demo video, under 3 minutes: `reports/guardpilot-demo.mov`.
+- [x] Public demo video file prepared: `reports/guardpilot-demo.mov`.
+- [ ] Public demo video URL added to final submission packet.
 - [ ] Public dashboard deployment if time allows.
 - [ ] X/Twitter development post with `#BitgetHackathon` and `@Bitget_AI`.
 - [x] Architecture diagram in README.

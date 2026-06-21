@@ -34,8 +34,9 @@ npm run record:demo
 
 讲解：
 
-> 大家好，这是 GuardPilot，一个为自主交易 Agent 设计的风险网关和纸交易评估沙盒。
-> 现在越来越多 Agent 可以 24 小时读取市场信号并自动提交交易意图，但真正接入实盘前，团队必须先回答几个问题：这个 Agent 会不会过度交易？会不会亏损后加杠杆报复性交易？会不会在高波动行情里追涨杀跌？它的每一次决策是否可以复现和审计？
+> GuardPilot 是一个 Bitget AI Base Camp Trading Infra 项目，解决一个问题：自主交易 Agent 触达执行工具之前，我们如何判断它是否安全、可复现、可审计？
+> 它不是另一个交易机器人，而是 Agent 和 Bitget Agent Hub / Playbook / MCP-style order tools 之间的 pre-trade safety gate。每个交易意图都会先经过行为风控、paper trading 模拟和审计记录，再决定 ALLOW、WARN 或 BLOCK。
+> 当前 MVP 使用 deterministic sample data 和 paper trading，不需要真实交易所密钥，也不会真实下单。
 
 要点：
 
@@ -107,7 +108,8 @@ npm run replay
 
 讲解：
 
-> 权益曲线用于对比有无 GuardPilot 的结果。这里可以看到风控网关不是为了阻止所有交易，而是在保留合理交易机会的同时，降低危险行为造成的回撤。
+> 顶部 Impact Evidence 对比同一组 Agent 输入在无防护和启用 GuardPilot 两种模式下的结果。下方 Guarded Paper Equity Curve 展示启用 GuardPilot 后的 paper trading 权益路径。
+> 这里可以看到风控网关不是为了阻止所有交易，而是在保留合理交易机会的同时，降低危险行为造成的回撤。
 
 ### 3. Trade Timeline
 

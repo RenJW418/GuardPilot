@@ -11,6 +11,38 @@ GuardPilot is a **pre-trade risk gateway, paper trading sandbox, and reproducibl
 > 当前 Hackathon MVP 使用的是可复现的 deterministic sample market data + sample Agent intents + paper trading simulation，不是实盘真实成交记录，也不包含真实交易所资金或密钥。项目价值证明来自同一组 Agent 输入在 `without guard` 和 `with GuardPilot` 两种模式下的可复现实验对比。
 > This MVP uses deterministic sample market data, sample Agent intents, and paper-trading simulation. It does not claim to include live exchange execution records or real funds. Its evidence comes from a reproducible A/B comparison between the same Agent stream without guardrails and with GuardPilot enabled.
 
+## Judge Packet / 评委快速验证
+
+| Item | Value |
+|---|---|
+| Track | Bitget AI Base Camp Hackathon S1 · Trading Infra |
+| One-line pitch | Pre-trade safety gate + paper trading sandbox + audit evidence layer for autonomous trading Agents |
+| Bitget fit | Sits before Bitget Agent Hub / Playbook / MCP-style order tools as a risk gate |
+| Runtime boundary | Paper trading + Bitget-ready dry run only; no live exchange orders or real funds |
+
+```bash
+pip install -e guardpilot/apps/api
+npm install --prefix guardpilot/apps/web
+npm run replay
+npm run evidence
+npm run dev
+```
+
+Open:
+
+- Dashboard: http://localhost:5173
+- API Docs: http://localhost:8000/docs
+- Health Check: http://localhost:8000/health
+
+Expected proof from the default replay:
+
+- 42 Agent intents evaluated.
+- 16 allowed / 4 warned / 22 blocked.
+- Final simulated equity: 9980.91 USDT with GuardPilot vs 9930.81 USDT without guard.
+- Max drawdown: 0.70% with GuardPilot vs 2.60% without guard.
+- 110 audit records generated across API logs, trade logs, and risk events.
+- Evidence manifest verifies SHA-256 hashes and JSONL row counts.
+
 ---
 
 ## 中文说明
@@ -193,6 +225,8 @@ GuardPilot 会先执行风险评估；只有 `ALLOW/WARN` 才返回 Bitget-ready
 - `guardpilot/samples/outputs/sample_risk_events.jsonl`：风控事件
 - `guardpilot/samples/outputs/sample_risk_report.json`：风险报告
 - `guardpilot/docs/evidence.md`：数据真实性说明与有效性证据包
+- `guardpilot/docs/final_submission_packet.md`：提交表单可复制的一页式材料包
+- `guardpilot/docs/bitget_integration_boundary.md`：Bitget Agent Hub / Playbook dry-run 安全边界说明
 - `guardpilot/reports/demo_report.html`：HTML 报告
 - `guardpilot/reports/guardpilot-demo.mov`：Demo 视频
 

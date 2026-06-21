@@ -8,6 +8,24 @@ It is built for the **Bitget AI Base Camp Hackathon S1 · Trading Infra** track.
 >
 > **Data note:** the included evidence uses deterministic sample market data, sample Agent intents, and paper-trading simulation. It is not a live exchange execution record. The value is demonstrated through a reproducible A/B comparison between the same Agent stream without guardrails and with GuardPilot enabled.
 
+## Judge Packet
+
+| Item | Value |
+|---|---|
+| Track | Bitget AI Base Camp Hackathon S1 · Trading Infra |
+| One-line pitch | Pre-trade risk gateway, paper trading evaluation sandbox, and audit evidence layer for autonomous trading Agents |
+| Bitget ecosystem fit | Designed to sit before Bitget Agent Hub / Playbook / MCP-style order tools as a safety gate |
+| Runtime boundary | Paper trading + Bitget-ready dry-run payloads only; no live exchange order forwarding by default |
+| Verifiable record | API logs, trade logs, risk events, JSON/HTML report, and SHA-256 evidence manifest |
+
+Expected default proof:
+
+- 42 Agent intents evaluated.
+- 16 allowed / 4 warned / 22 blocked.
+- Final simulated equity: 9980.91 USDT with GuardPilot vs 9930.81 USDT without guard.
+- Max drawdown: 0.70% with GuardPilot vs 2.60% without guard.
+- 110 audit records generated.
+
 ## Judge Quickstart
 
 If you are reviewing from the repository root (`20260620_bitget`), install dependencies once:
@@ -287,6 +305,12 @@ For hackathon reproducibility, live order forwarding is intentionally opt-in and
 ## Demo Video Script
 
 See `docs/demo_script.md` for a 3-minute video outline.
+
+Submission helpers:
+
+- `docs/final_submission_packet.md` — one-page packet for the hackathon submission form.
+- `docs/bitget_integration_boundary.md` — Bitget Agent Hub / Playbook dry-run safety boundary.
+- `docs/submission_checklist.md` — final checklist for public links, UID, evidence, and commands.
 
 To record locally on macOS from the repository root:
 
