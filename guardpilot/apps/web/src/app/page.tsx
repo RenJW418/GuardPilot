@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { AgentTable } from '../components/AgentTable';
 import { ApiLogTable } from '../components/ApiLogTable';
+import { AuditCoverageCard, ApiLatencyPanel, DecisionBreakdown, ImpactComparison, RiskRuleBreakdown, RiskTrend } from '../components/DashboardInsights';
 import { EquityCurve } from '../components/EquityCurve';
 import { ReplayPanel } from '../components/ReplayPanel';
 import { RiskScoreCard } from '../components/RiskScoreCard';
@@ -133,15 +134,28 @@ function App() {
         <RiskScoreCard score={avgRisk} hasData={avgRisk !== undefined} />
         <div className="card metric"><div className="eyebrow">Current Equity</div><strong>{money(latestEquity)}</strong><span>{hasEvidence ? `${pnl >= 0 ? '+' : ''}${pnl.toFixed(2)} PnL` : 'initial paper balance'}</span></div>
         <div className="card metric"><div className="eyebrow">Blocked Intents</div><strong>{hasEvidence ? blocked : '—'}</strong><span>dangerous actions stopped before execution</span></div>
-        <div className="card metric"><div className="eyebrow">Impact Evidence</div><strong>{impact ? `${pct(activeReport?.max_drawdown_without_guard ?? summary?.max_drawdown_without_guard)} → ${pct(activeReport?.max_drawdown_with_guard ?? summary?.max_drawdown_with_guard)}` : 'Run Replay'}</strong><span>{impact ? `+${impact.equity_improvement_usdt.toFixed(2)} USDT protected · ${pct(impact.max_drawdown_reduction_relative)} DD reduction` : 'drawdown reduction proof'}</span></div>
+        <div className="card metric"><div className="eyebrow">Impact Evidence</div><strong>{impact ? `${pct(activeReport?.max_drawdown_without_guard ?? summary?.max_drawdown_without_guard)} → ${pct(activeReport?.max_drawdown_with_guard ?? summary?.max_drawdown_with_guard)}` : 'Run Replay'}</strong><span>{impact ? `+${impact.equity_improvement_usdt.toFixed(2)} USDT vs unguarded replay · ${pct(impact.max_drawdown_reduction_relative)} DD reduction` : 'drawdown reduction proof'}</span></div>
       </section>
 
       <section className="grid two">
         <ReplayPanel onReplay={handleReplay} loading={loading} summary={summary} scenario={selectedScenario} onScenarioChange={setSelectedScenario} />
-        <AgentTable agents={agents} />
+        <AuditCoverageCard summary={summary} trades={trades} apiLogs={apiLogs} riskEvents={displayedRiskEvents} />
       </section>
 
       <section className="grid two">
+        <DecisionBreakdown summary={summary} trades={trades} apiLogs={apiLogs} />
+        <ImpactComparison summary={summary} report={activeReport} />
+      </section>
+
+      <RiskTrend trades={trades} apiLogs={apiLogs} />
+
+      <section className="grid two">
+        <RiskRuleBreakdown riskEvents={summary?.risk_events ?? activeReport?.risk_events ?? []} />
+        <ApiLatencyPanel apiLogs={summary?.api_calls ?? apiLogs} />
+      </section>
+
+      <section className="grid two">
+        <AgentTable agents={agents} />
         <div className="card">
           <div className="section-title">Evidence & Audit Pack</div>
           <p>Trading Infra requires verifiable usage records. GuardPilot regenerates sample inputs, outputs, logs, reports, and a hash manifest.</p>
