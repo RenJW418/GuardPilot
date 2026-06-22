@@ -56,7 +56,7 @@ export type AgentSummary = {
   average_risk_score: number;
 };
 
-export type ReplayScenario = 'btc_momentum_crash' | 'eth_overtrade';
+export type ReplayScenario = 'btc_momentum_crash';
 
 export type ImpactMetrics = {
   equity_improvement_usdt: number;
@@ -64,6 +64,24 @@ export type ImpactMetrics = {
   max_drawdown_reduction_relative: number;
   blocked_intent_rate: number;
   audit_records_generated: number;
+};
+
+export type DataProvenance = {
+  market_data_source?: string;
+  market_data_file?: string;
+  market_data_provenance_file?: string;
+  agent_signal_source?: string;
+  agent_signals_file?: string;
+  agent_signals_provenance_file?: string;
+  execution_mode?: string;
+  live_orders?: boolean;
+  market_source_endpoint?: string;
+  market_symbol?: string;
+  market_granularity?: string;
+  market_rows?: number;
+  market_sha256?: string;
+  market_time_start?: string;
+  market_time_end?: string;
 };
 
 export type RiskReport = {
@@ -83,6 +101,7 @@ export type RiskReport = {
   average_risk_score: number;
   residual_risk_score_after_guard: number;
   impact_metrics: ImpactMetrics;
+  data_provenance?: DataProvenance;
   win_rate?: number;
   profit_factor?: number;
   sharpe_like?: number;
@@ -107,6 +126,7 @@ export type ReplaySummary = {
   max_drawdown_without_guard: number;
   risk_grade: string;
   impact_metrics: ImpactMetrics;
+  data_provenance?: DataProvenance;
   report_path: string;
   evidence_manifest_path: string;
   risk_report?: RiskReport;

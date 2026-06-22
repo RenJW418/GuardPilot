@@ -53,3 +53,5 @@ class IntentResponse(BaseModel):
     account_equity_after: float
     checks: list[dict]
     bitget_dry_run_payload: Optional[dict] = None
+    market_context: Optional[dict] = None
+    execution_mode: str = "paper_trading_only"

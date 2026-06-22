@@ -1,0 +1,12 @@
+{
+  "source": "Paper-agent signals derived from Bitget public market snapshot",
+  "market_input": "samples/market/bitget_btcusdt_1m.csv",
+  "output": "samples/agents/paper_momentum_agent_signals_from_bitget_snapshot.jsonl",
+  "generated_at": "2026-06-22T17:38:23Z",
+  "rows": 42,
+  "agent_id": "paper_momentum_agent_bitget_snapshot",
+  "method": "Deterministic momentum/reversal rules over real Bitget public candles for paper-trading risk evaluation.",
+  "not_agenthub_export": true,
+  "execution_mode": "paper_trading_only",
+  "live_orders": false
+}

@@ -1,0 +1,34 @@
+{
+  "source": "Bitget public market API",
+  "endpoint": "https://api.bitget.com/api/v2/spot/market/candles",
+  "request_url": "https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1min&limit=100",
+  "request_params": {
+    "symbol": "BTCUSDT",
+    "granularity": "1min",
+    "limit": "100"
+  },
+  "symbol": "BTCUSDT",
+  "granularity": "1min",
+  "rows": 100,
+  "exchange_time_start": "2026-06-22T15:59:00Z",
+  "exchange_time_end": "2026-06-22T17:38:00Z",
+  "response_code": "00000",
+  "response_request_time": 1782149896957,
+  "license_note": "Public market data fetched from Bitget. No private account data, API keys, real funds, or live orders are used.",
+  "fetched_at": "2026-06-22T17:38:17Z",
+  "csv_path": "samples/market/bitget_btcusdt_1m.csv",
+  "sha256": "45a48c41e486b06762ff7e3596ea215557fd28edefc21a82b9cb588ea3891d42",
+  "bytes": 7344,
+  "schema": [
+    "timestamp",
+    "symbol",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "guardpilot_data_mode": "recorded_bitget_public_snapshot",
+  "execution_mode": "paper_trading_only",
+  "live_orders": false
+}

@@ -4,12 +4,19 @@
   "private": true,
   "description": "Root workspace launcher for the GuardPilot Bitget hackathon project.",
   "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "judge:demo": "bash scripts/judge-demo.sh",
+    "bitget:sidecar": "bash scripts/bitget-agent-sidecar.sh",
+    "docker:demo": "cd guardpilot && docker compose up --build",
     "dev": "bash scripts/dev.sh",
-    "dev:api": "cd guardpilot && PYTHONPATH=apps/api python3 -m uvicorn guardpilot.main:app --app-dir apps/api --reload --port 8000",
+    "dev:api": "PYTHON=${PYTHON:-$PWD/.venv/bin/python}; [ -x \"$PYTHON\" ] || PYTHON=python3; cd guardpilot && PYTHONPATH=apps/api \"$PYTHON\" -m uvicorn guardpilot.main:app --app-dir apps/api --reload --port 8000",
     "dev:web": "npm --prefix guardpilot/apps/web run dev",
-    "replay": "cd guardpilot && python3 scripts/replay.py --scenario samples/scenarios/btc_momentum_crash.json",
-    "evidence": "cd guardpilot && python3 scripts/verify_evidence.py",
-    "test": "cd guardpilot && PYTHONPATH=apps/api python3 -m pytest apps/api/guardpilot/tests",
+    "replay": "PYTHON=${PYTHON:-$PWD/.venv/bin/python}; [ -x \"$PYTHON\" ] || PYTHON=python3; cd guardpilot && \"$PYTHON\" scripts/replay.py --scenario samples/scenarios/btc_momentum_crash.json",
+    "evidence": "PYTHON=${PYTHON:-$PWD/.venv/bin/python}; [ -x \"$PYTHON\" ] || PYTHON=python3; cd guardpilot && \"$PYTHON\" scripts/verify_evidence.py",
+    "bitget:trace": "PYTHON=${PYTHON:-$PWD/.venv/bin/python}; [ -x \"$PYTHON\" ] || PYTHON=python3; cd guardpilot && PYTHONPATH=apps/api \"$PYTHON\" scripts/bitget_official_agent_trace.py",
+    "fetch:market": "PYTHON=${PYTHON:-$PWD/.venv/bin/python}; [ -x \"$PYTHON\" ] || PYTHON=python3; cd guardpilot && PYTHONPATH=apps/api \"$PYTHON\" scripts/fetch_bitget_snapshot.py",
+    "build:signals": "PYTHON=${PYTHON:-$PWD/.venv/bin/python}; [ -x \"$PYTHON\" ] || PYTHON=python3; cd guardpilot && \"$PYTHON\" scripts/build_paper_agent_signals.py",
+    "test": "PYTHON=${PYTHON:-$PWD/.venv/bin/python}; [ -x \"$PYTHON\" ] || PYTHON=python3; cd guardpilot && PYTHONPATH=apps/api \"$PYTHON\" -m pytest apps/api/guardpilot/tests",
     "build": "npm --prefix guardpilot/apps/web run build",
     "record:demo": "bash scripts/record-demo.sh 180"
   }

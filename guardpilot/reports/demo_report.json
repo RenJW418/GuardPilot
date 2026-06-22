@@ -1,376 +1,393 @@
 {
   "report_id": "rep_btc_momentum_crash_001",
   "scenario_id": "btc_momentum_crash",
-  "agent_id": "demo_momentum_agent",
+  "agent_id": "paper_momentum_agent_bitget_snapshot",
   "initial_balance": 10000,
-  "final_equity_without_guard": 9930.81,
-  "final_equity_with_guard": 9980.9074,
-  "max_drawdown_without_guard": 0.026018,
-  "max_drawdown_with_guard": 0.006996,
+  "final_equity_without_guard": 9828.0667,
+  "final_equity_with_guard": 9976.927,
+  "max_drawdown_without_guard": 0.018836,
+  "max_drawdown_with_guard": 0.002697,
   "total_intents": 42,
-  "allowed": 16,
-  "warned": 4,
-  "blocked": 22,
+  "allowed": 28,
+  "warned": 0,
+  "blocked": 14,
   "risk_grade": "B",
-  "average_risk_score": 72.33,
-  "residual_risk_score_after_guard": 40.9,
+  "average_risk_score": 59.24,
+  "residual_risk_score_after_guard": 39.24,
   "impact_metrics": {
-    "equity_improvement_usdt": 50.0973,
-    "max_drawdown_reduction_points": 1.9022,
-    "max_drawdown_reduction_relative": 0.7311,
-    "blocked_intent_rate": 0.5238,
-    "audit_records_generated": 110
+    "equity_improvement_usdt": 148.8603,
+    "max_drawdown_reduction_points": 1.614,
+    "max_drawdown_reduction_relative": 0.8568,
+    "blocked_intent_rate": 0.3333,
+    "audit_records_generated": 98
+  },
+  "data_provenance": {
+    "market_data_source": "Bitget public market API snapshot",
+    "market_data_file": "samples/market/bitget_btcusdt_1m.csv",
+    "market_data_provenance_file": "samples/market/bitget_btcusdt_1m.provenance.json",
+    "agent_signal_source": "Paper-agent signals derived from Bitget public market snapshot",
+    "agent_signals_file": "samples/agents/paper_momentum_agent_signals_from_bitget_snapshot.jsonl",
+    "agent_signals_provenance_file": "samples/agents/paper_momentum_agent_signals_from_bitget_snapshot.provenance.json",
+    "execution_mode": "paper_trading_only",
+    "live_orders": false,
+    "market_source_endpoint": "https://api.bitget.com/api/v2/spot/market/candles",
+    "market_symbol": "BTCUSDT",
+    "market_granularity": "1min",
+    "market_rows": 100,
+    "market_sha256": "45a48c41e486b06762ff7e3596ea215557fd28edefc21a82b9cb588ea3891d42",
+    "market_time_start": "2026-06-22T15:59:00Z",
+    "market_time_end": "2026-06-22T17:38:00Z"
   },
   "win_rate": 0.0,
   "profit_factor": 0.0,
-  "sharpe_like": -0.0271,
+  "sharpe_like": -0.097,
   "equity_curve": [
     {
-      "timestamp": "2026-06-20T10:01:00Z",
-      "equity": 9999.0605
+      "timestamp": "2026-06-22T16:00:00Z",
+      "equity": 9998.8731
     },
     {
-      "timestamp": "2026-06-20T10:01:00Z",
-      "equity": 9998.9039
+      "timestamp": "2026-06-22T16:00:00Z",
+      "equity": 9998.6852
     },
     {
-      "timestamp": "2026-06-20T10:02:00Z",
-      "equity": 9996.3433
+      "timestamp": "2026-06-22T16:01:00Z",
+      "equity": 9997.8225
     },
     {
-      "timestamp": "2026-06-20T10:02:00Z",
-      "equity": 9995.9785
+      "timestamp": "2026-06-22T16:01:00Z",
+      "equity": 9997.452
     },
     {
-      "timestamp": "2026-06-20T10:03:00Z",
-      "equity": 9999.3385
+      "timestamp": "2026-06-22T16:02:00Z",
+      "equity": 9998.0671
     },
     {
-      "timestamp": "2026-06-20T10:03:00Z",
-      "equity": 9999.3385
+      "timestamp": "2026-06-22T16:02:00Z",
+      "equity": 9997.548
     },
     {
-      "timestamp": "2026-06-20T10:04:00Z",
-      "equity": 10002.8594
+      "timestamp": "2026-06-22T16:03:00Z",
+      "equity": 9995.775
     },
     {
-      "timestamp": "2026-06-20T10:04:00Z",
-      "equity": 10002.1786
+      "timestamp": "2026-06-22T16:03:00Z",
+      "equity": 9996.135
     },
     {
-      "timestamp": "2026-06-20T10:05:00Z",
-      "equity": 9995.4071
+      "timestamp": "2026-06-22T16:04:00Z",
+      "equity": 9995.4359
     },
     {
-      "timestamp": "2026-06-20T10:05:00Z",
-      "equity": 9995.93
+      "timestamp": "2026-06-22T16:04:00Z",
+      "equity": 9994.8933
     },
     {
-      "timestamp": "2026-06-20T10:06:00Z",
-      "equity": 9986.5048
+      "timestamp": "2026-06-22T16:05:00Z",
+      "equity": 9995.8692
     },
     {
-      "timestamp": "2026-06-20T10:06:00Z",
-      "equity": 9986.8178
+      "timestamp": "2026-06-22T16:05:00Z",
+      "equity": 9995.1819
     },
     {
-      "timestamp": "2026-06-20T10:07:00Z",
-      "equity": 9979.3304
+      "timestamp": "2026-06-22T16:06:00Z",
+      "equity": 9992.732
     },
     {
-      "timestamp": "2026-06-20T10:07:00Z",
-      "equity": 9978.7589
+      "timestamp": "2026-06-22T16:06:00Z",
+      "equity": 9993.2562
     },
     {
-      "timestamp": "2026-06-20T10:08:00Z",
-      "equity": 9982.6792
+      "timestamp": "2026-06-22T16:07:00Z",
+      "equity": 9995.7632
     },
     {
-      "timestamp": "2026-06-20T10:08:00Z",
-      "equity": 9981.794
+      "timestamp": "2026-06-22T16:07:00Z",
+      "equity": 9995.7632
     },
     {
-      "timestamp": "2026-06-20T10:09:00Z",
-      "equity": 9966.834
+      "timestamp": "2026-06-22T16:08:00Z",
+      "equity": 9994.6255
     },
     {
-      "timestamp": "2026-06-20T10:09:00Z",
-      "equity": 9966.834
+      "timestamp": "2026-06-22T16:08:00Z",
+      "equity": 9994.6255
     },
     {
-      "timestamp": "2026-06-20T10:10:00Z",
-      "equity": 9972.954
+      "timestamp": "2026-06-22T16:09:00Z",
+      "equity": 9995.3724
     },
     {
-      "timestamp": "2026-06-20T10:10:00Z",
-      "equity": 9972.954
+      "timestamp": "2026-06-22T16:09:00Z",
+      "equity": 9995.3724
     },
     {
-      "timestamp": "2026-06-20T10:11:00Z",
-      "equity": 9981.794
+      "timestamp": "2026-06-22T16:10:00Z",
+      "equity": 9992.0238
     },
     {
-      "timestamp": "2026-06-20T10:11:00Z",
-      "equity": 9981.794
+      "timestamp": "2026-06-22T16:10:00Z",
+      "equity": 9992.0238
     },
     {
-      "timestamp": "2026-06-20T10:12:00Z",
-      "equity": 9993.354
+      "timestamp": "2026-06-22T16:11:00Z",
+      "equity": 9993.8751
     },
     {
-      "timestamp": "2026-06-20T10:12:00Z",
-      "equity": 9993.354
+      "timestamp": "2026-06-22T16:11:00Z",
+      "equity": 9993.8751
     },
     {
-      "timestamp": "2026-06-20T10:13:00Z",
-      "equity": 9987.914
+      "timestamp": "2026-06-22T16:12:00Z",
+      "equity": 9992.6819
     },
     {
-      "timestamp": "2026-06-20T10:13:00Z",
-      "equity": 9987.914
+      "timestamp": "2026-06-22T16:12:00Z",
+      "equity": 9992.6819
     },
     {
-      "timestamp": "2026-06-20T10:14:00Z",
-      "equity": 9995.394
+      "timestamp": "2026-06-22T16:13:00Z",
+      "equity": 9993.3818
     },
     {
-      "timestamp": "2026-06-20T10:14:00Z",
-      "equity": 9995.394
+      "timestamp": "2026-06-22T16:13:00Z",
+      "equity": 9993.3818
     },
     {
-      "timestamp": "2026-06-20T10:15:00Z",
-      "equity": 9987.234
+      "timestamp": "2026-06-22T16:14:00Z",
+      "equity": 9992.9314
     },
     {
-      "timestamp": "2026-06-20T10:15:00Z",
-      "equity": 9987.234
+      "timestamp": "2026-06-22T16:14:00Z",
+      "equity": 9992.9314
     },
     {
-      "timestamp": "2026-06-20T10:16:00Z",
-      "equity": 9974.994
+      "timestamp": "2026-06-22T16:15:00Z",
+      "equity": 9993.862
     },
     {
-      "timestamp": "2026-06-20T10:16:00Z",
-      "equity": 9974.994
+      "timestamp": "2026-06-22T16:15:00Z",
+      "equity": 9993.1646
     },
     {
-      "timestamp": "2026-06-20T10:17:00Z",
-      "equity": 9959.5156
+      "timestamp": "2026-06-22T16:16:00Z",
+      "equity": 9995.0266
     },
     {
-      "timestamp": "2026-06-20T10:17:00Z",
-      "equity": 9958.4792
+      "timestamp": "2026-06-22T16:16:00Z",
+      "equity": 9994.1267
     },
     {
-      "timestamp": "2026-06-20T10:18:00Z",
-      "equity": 9932.8792
+      "timestamp": "2026-06-22T16:17:00Z",
+      "equity": 9989.0326
     },
     {
-      "timestamp": "2026-06-20T10:18:00Z",
-      "equity": 9932.8792
+      "timestamp": "2026-06-22T16:17:00Z",
+      "equity": 9989.0326
     },
     {
-      "timestamp": "2026-06-20T10:19:00Z",
-      "equity": 9953.6792
+      "timestamp": "2026-06-22T16:18:00Z",
+      "equity": 9987.4785
     },
     {
-      "timestamp": "2026-06-20T10:19:00Z",
-      "equity": 9953.6792
+      "timestamp": "2026-06-22T16:18:00Z",
+      "equity": 9987.4785
     },
     {
-      "timestamp": "2026-06-20T10:20:00Z",
-      "equity": 9968.0792
+      "timestamp": "2026-06-22T16:19:00Z",
+      "equity": 9987.1367
     },
     {
-      "timestamp": "2026-06-20T10:20:00Z",
-      "equity": 9968.0792
+      "timestamp": "2026-06-22T16:19:00Z",
+      "equity": 9987.1367
     },
     {
-      "timestamp": "2026-06-20T10:21:00Z",
-      "equity": 9956.8792
+      "timestamp": "2026-06-22T16:20:00Z",
+      "equity": 9986.8201
     },
     {
-      "timestamp": "2026-06-20T10:21:00Z",
-      "equity": 9956.8792
+      "timestamp": "2026-06-22T16:20:00Z",
+      "equity": 9986.8201
     },
     {
-      "timestamp": "2026-06-20T10:22:00Z",
-      "equity": 9964.0792
+      "timestamp": "2026-06-22T16:21:00Z",
+      "equity": 9982.8114
     },
     {
-      "timestamp": "2026-06-20T10:22:00Z",
-      "equity": 9964.0792
+      "timestamp": "2026-06-22T16:21:00Z",
+      "equity": 9983.5422
     },
     {
-      "timestamp": "2026-06-20T10:23:00Z",
-      "equity": 9970.3018
+      "timestamp": "2026-06-22T16:22:00Z",
+      "equity": 9985.4754
     },
     {
-      "timestamp": "2026-06-20T10:23:00Z",
-      "equity": 9971.0813
+      "timestamp": "2026-06-22T16:22:00Z",
+      "equity": 9984.5417
     },
     {
-      "timestamp": "2026-06-20T10:24:00Z",
-      "equity": 9966.8813
+      "timestamp": "2026-06-22T16:23:00Z",
+      "equity": 9981.5748
     },
     {
-      "timestamp": "2026-06-20T10:24:00Z",
-      "equity": 9966.8813
+      "timestamp": "2026-06-22T16:23:00Z",
+      "equity": 9982.3714
     },
     {
-      "timestamp": "2026-06-20T10:25:00Z",
-      "equity": 9974.7642
+      "timestamp": "2026-06-22T16:24:00Z",
+      "equity": 9985.5372
     },
     {
-      "timestamp": "2026-06-20T10:25:00Z",
-      "equity": 9975.3886
+      "timestamp": "2026-06-22T16:24:00Z",
+      "equity": 9984.5576
     },
     {
-      "timestamp": "2026-06-20T10:26:00Z",
-      "equity": 9967.6153
+      "timestamp": "2026-06-22T16:25:00Z",
+      "equity": 9985.1061
     },
     {
-      "timestamp": "2026-06-20T10:26:00Z",
-      "equity": 9968.0309
+      "timestamp": "2026-06-22T16:25:00Z",
+      "equity": 9983.9416
     },
     {
-      "timestamp": "2026-06-20T10:27:00Z",
-      "equity": 9970.5909
+      "timestamp": "2026-06-22T16:26:00Z",
+      "equity": 9987.0572
     },
     {
-      "timestamp": "2026-06-20T10:27:00Z",
-      "equity": 9970.5909
+      "timestamp": "2026-06-22T16:26:00Z",
+      "equity": 9985.7484
     },
     {
-      "timestamp": "2026-06-20T10:28:00Z",
-      "equity": 9972.172
+      "timestamp": "2026-06-22T16:27:00Z",
+      "equity": 9980.3963
     },
     {
-      "timestamp": "2026-06-20T10:28:00Z",
-      "equity": 9971.4427
+      "timestamp": "2026-06-22T16:27:00Z",
+      "equity": 9981.5349
     },
     {
-      "timestamp": "2026-06-20T10:29:00Z",
-      "equity": 9962.0315
+      "timestamp": "2026-06-22T16:28:00Z",
+      "equity": 9982.7959
     },
     {
-      "timestamp": "2026-06-20T10:29:00Z",
-      "equity": 9962.6033
+      "timestamp": "2026-06-22T16:28:00Z",
+      "equity": 9981.4699
     },
     {
-      "timestamp": "2026-06-20T10:30:00Z",
-      "equity": 9970.0833
+      "timestamp": "2026-06-22T16:29:00Z",
+      "equity": 9978.2805
     },
     {
-      "timestamp": "2026-06-20T10:30:00Z",
-      "equity": 9970.0833
+      "timestamp": "2026-06-22T16:29:00Z",
+      "equity": 9979.4721
     },
     {
-      "timestamp": "2026-06-20T10:31:00Z",
-      "equity": 9959.8559
+      "timestamp": "2026-06-22T16:30:00Z",
+      "equity": 9981.1944
     },
     {
-      "timestamp": "2026-06-20T10:31:00Z",
-      "equity": 9959.0246
+      "timestamp": "2026-06-22T16:30:00Z",
+      "equity": 9981.1944
     },
     {
-      "timestamp": "2026-06-20T10:32:00Z",
-      "equity": 9942.3846
+      "timestamp": "2026-06-22T16:31:00Z",
+      "equity": 9980.6998
     },
     {
-      "timestamp": "2026-06-20T10:32:00Z",
-      "equity": 9942.3846
+      "timestamp": "2026-06-22T16:31:00Z",
+      "equity": 9980.6998
     },
     {
-      "timestamp": "2026-06-20T10:33:00Z",
-      "equity": 9964.1446
+      "timestamp": "2026-06-22T16:32:00Z",
+      "equity": 9982.9659
     },
     {
-      "timestamp": "2026-06-20T10:33:00Z",
-      "equity": 9964.1446
+      "timestamp": "2026-06-22T16:32:00Z",
+      "equity": 9981.6353
     },
     {
-      "timestamp": "2026-06-20T10:34:00Z",
-      "equity": 9977.8068
+      "timestamp": "2026-06-22T16:33:00Z",
+      "equity": 9977.2155
     },
     {
-      "timestamp": "2026-06-20T10:34:00Z",
-      "equity": 9976.7628
+      "timestamp": "2026-06-22T16:33:00Z",
+      "equity": 9978.381
     },
     {
-      "timestamp": "2026-06-20T10:35:00Z",
-      "equity": 9958.9799
+      "timestamp": "2026-06-22T16:34:00Z",
+      "equity": 9979.702
     },
     {
-      "timestamp": "2026-06-20T10:35:00Z",
-      "equity": 9959.7607
+      "timestamp": "2026-06-22T16:34:00Z",
+      "equity": 9978.348
     },
     {
-      "timestamp": "2026-06-20T10:36:00Z",
-      "equity": 9967.5607
+      "timestamp": "2026-06-22T16:35:00Z",
+      "equity": 9986.3412
     },
     {
-      "timestamp": "2026-06-20T10:36:00Z",
-      "equity": 9967.5607
+      "timestamp": "2026-06-22T16:35:00Z",
+      "equity": 9984.8233
     },
     {
-      "timestamp": "2026-06-20T10:37:00Z",
-      "equity": 9972.8038
+      "timestamp": "2026-06-22T16:36:00Z",
+      "equity": 9971.909
     },
     {
-      "timestamp": "2026-06-20T10:37:00Z",
-      "equity": 9971.8637
+      "timestamp": "2026-06-22T16:36:00Z",
+      "equity": 9973.2297
     },
     {
-      "timestamp": "2026-06-20T10:38:00Z",
-      "equity": 9965.5243
+      "timestamp": "2026-06-22T16:37:00Z",
+      "equity": 9975.5552
     },
     {
-      "timestamp": "2026-06-20T10:38:00Z",
-      "equity": 9964.3766
+      "timestamp": "2026-06-22T16:37:00Z",
+      "equity": 9974.0435
     },
     {
-      "timestamp": "2026-06-20T10:39:00Z",
-      "equity": 9974.4966
+      "timestamp": "2026-06-22T16:38:00Z",
+      "equity": 9977.7083
     },
     {
-      "timestamp": "2026-06-20T10:39:00Z",
-      "equity": 9974.4966
+      "timestamp": "2026-06-22T16:38:00Z",
+      "equity": 9976.0551
     },
     {
-      "timestamp": "2026-06-20T10:40:00Z",
-      "equity": 9987.8428
+      "timestamp": "2026-06-22T16:39:00Z",
+      "equity": 9972.5252
     },
     {
-      "timestamp": "2026-06-20T10:40:00Z",
-      "equity": 9986.376
+      "timestamp": "2026-06-22T16:39:00Z",
+      "equity": 9974.0197
     },
     {
-      "timestamp": "2026-06-20T10:41:00Z",
-      "equity": 9970.748
+      "timestamp": "2026-06-22T16:40:00Z",
+      "equity": 9983.6026
     },
     {
-      "timestamp": "2026-06-20T10:41:00Z",
-      "equity": 9969.1274
+      "timestamp": "2026-06-22T16:40:00Z",
+      "equity": 9981.888
     },
     {
-      "timestamp": "2026-06-20T10:42:00Z",
-      "equity": 9980.9074
+      "timestamp": "2026-06-22T16:41:00Z",
+      "equity": 9975.3562
     },
     {
-      "timestamp": "2026-06-20T10:42:00Z",
-      "equity": 9980.9074
+      "timestamp": "2026-06-22T16:41:00Z",
+      "equity": 9976.927
     }
   ],
   "risk_events": [
     {
-      "timestamp": "2026-06-20T10:03:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:07:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
-      "risk_score": 85,
+      "risk_score": 100,
       "risk_level": "critical",
-      "message": "Single trade notional is 52.2% of equity",
+      "message": "Single trade notional is 46.6% of equity",
       "checks": [
         {
           "name": "max_leverage",
@@ -382,19 +399,25 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 52.2% of equity"
+          "message": "Single trade notional is 46.6% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 70.5% of equity"
+          "message": "Projected BTCUSDT exposure reaches 72.8% of equity"
         },
         {
           "name": "consecutive_losses",
+          "status": "fail",
+          "score": 16,
+          "message": "Agent has 7 consecutive losing closes"
+        },
+        {
+          "name": "overtrading",
           "status": "warn",
           "score": 7,
-          "message": "Agent has 2 consecutive losses"
+          "message": "Trading frequency is elevated: 7 trades in 15 minutes"
         },
         {
           "name": "revenge_trading_detector",
@@ -405,89 +428,13 @@
       ]
     },
     {
-      "timestamp": "2026-06-20T10:06:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "WARN",
-      "risk_score": 80,
-      "risk_level": "high",
-      "message": "Single trade notional is 41.8% of equity",
-      "checks": [
-        {
-          "name": "max_leverage",
-          "status": "warn",
-          "score": 12,
-          "message": "Leverage 4.0x is above recommended 3x"
-        },
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 41.8% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 67.8% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 4 consecutive losing closes"
-        },
-        {
-          "name": "revenge_trading_detector",
-          "status": "warn",
-          "score": 10,
-          "message": "Possible loss-chasing behavior detected"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:08:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "WARN",
-      "risk_score": 65,
-      "risk_level": "high",
-      "message": "Single trade notional is 47.0% of equity",
-      "checks": [
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 47.0% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 75.7% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 6 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "warn",
-          "score": 7,
-          "message": "Trading frequency is elevated: 7 trades in 15 minutes"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:09:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:08:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
-      "risk_score": 96,
+      "risk_score": 100,
       "risk_level": "critical",
-      "message": "Single trade notional is 46.8% of equity",
+      "message": "Single trade notional is 57.0% of equity",
       "checks": [
         {
           "name": "max_leverage",
@@ -499,13 +446,13 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 46.8% of equity"
+          "message": "Single trade notional is 57.0% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 91.0% of equity"
+          "message": "Projected BTCUSDT exposure reaches 83.2% of equity"
         },
         {
           "name": "consecutive_losses",
@@ -521,20 +468,20 @@
         },
         {
           "name": "revenge_trading_detector",
-          "status": "warn",
-          "score": 10,
-          "message": "Possible loss-chasing behavior detected"
+          "status": "fail",
+          "score": 24,
+          "message": "Position size increased sharply after consecutive losses"
         }
       ]
     },
     {
-      "timestamp": "2026-06-20T10:10:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:09:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
-      "risk_score": 86,
+      "risk_score": 96,
       "risk_level": "critical",
-      "message": "Single trade notional is 46.9% of equity",
+      "message": "Single trade notional is 46.6% of equity",
       "checks": [
         {
           "name": "max_leverage",
@@ -546,13 +493,13 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 46.9% of equity"
+          "message": "Single trade notional is 46.6% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 91.2% of equity"
+          "message": "Projected BTCUSDT exposure reaches 72.8% of equity"
         },
         {
           "name": "consecutive_losses",
@@ -565,17 +512,23 @@
           "status": "fail",
           "score": 16,
           "message": "9 trades in the last 15 minutes"
+        },
+        {
+          "name": "revenge_trading_detector",
+          "status": "warn",
+          "score": 10,
+          "message": "Possible loss-chasing behavior detected"
         }
       ]
     },
     {
-      "timestamp": "2026-06-20T10:11:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:10:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
-      "risk_score": 86,
+      "risk_score": 96,
       "risk_level": "critical",
-      "message": "Single trade notional is 47.0% of equity",
+      "message": "Single trade notional is 57.0% of equity",
       "checks": [
         {
           "name": "max_leverage",
@@ -587,13 +540,13 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 47.0% of equity"
+          "message": "Single trade notional is 57.0% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 91.4% of equity"
+          "message": "Projected BTCUSDT exposure reaches 83.2% of equity"
         },
         {
           "name": "consecutive_losses",
@@ -606,17 +559,23 @@
           "status": "fail",
           "score": 16,
           "message": "10 trades in the last 15 minutes"
+        },
+        {
+          "name": "revenge_trading_detector",
+          "status": "warn",
+          "score": 10,
+          "message": "Possible loss-chasing behavior detected"
         }
       ]
     },
     {
-      "timestamp": "2026-06-20T10:12:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:11:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
       "risk_score": 86,
       "risk_level": "critical",
-      "message": "Single trade notional is 47.1% of equity",
+      "message": "Single trade notional is 46.6% of equity",
       "checks": [
         {
           "name": "max_leverage",
@@ -628,13 +587,13 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 47.1% of equity"
+          "message": "Single trade notional is 46.6% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 91.5% of equity"
+          "message": "Projected BTCUSDT exposure reaches 72.9% of equity"
         },
         {
           "name": "consecutive_losses",
@@ -651,13 +610,13 @@
       ]
     },
     {
-      "timestamp": "2026-06-20T10:13:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:12:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
       "risk_score": 86,
       "risk_level": "critical",
-      "message": "Single trade notional is 47.0% of equity",
+      "message": "Single trade notional is 57.0% of equity",
       "checks": [
         {
           "name": "max_leverage",
@@ -669,13 +628,13 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 47.0% of equity"
+          "message": "Single trade notional is 57.0% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 91.3% of equity"
+          "message": "Projected BTCUSDT exposure reaches 83.2% of equity"
         },
         {
           "name": "consecutive_losses",
@@ -692,13 +651,13 @@
       ]
     },
     {
-      "timestamp": "2026-06-20T10:14:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:13:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
       "risk_score": 86,
       "risk_level": "critical",
-      "message": "Single trade notional is 47.1% of equity",
+      "message": "Single trade notional is 46.6% of equity",
       "checks": [
         {
           "name": "max_leverage",
@@ -710,13 +669,13 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 47.1% of equity"
+          "message": "Single trade notional is 46.6% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 91.5% of equity"
+          "message": "Projected BTCUSDT exposure reaches 72.9% of equity"
         },
         {
           "name": "consecutive_losses",
@@ -733,13 +692,13 @@
       ]
     },
     {
-      "timestamp": "2026-06-20T10:15:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:14:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
       "risk_score": 86,
       "risk_level": "critical",
-      "message": "Single trade notional is 46.9% of equity",
+      "message": "Single trade notional is 57.0% of equity",
       "checks": [
         {
           "name": "max_leverage",
@@ -751,13 +710,13 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 46.9% of equity"
+          "message": "Single trade notional is 57.0% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 91.3% of equity"
+          "message": "Projected BTCUSDT exposure reaches 83.2% of equity"
         },
         {
           "name": "consecutive_losses",
@@ -774,90 +733,8 @@
       ]
     },
     {
-      "timestamp": "2026-06-20T10:16:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "BLOCK",
-      "risk_score": 86,
-      "risk_level": "critical",
-      "message": "Single trade notional is 46.9% of equity",
-      "checks": [
-        {
-          "name": "max_leverage",
-          "status": "warn",
-          "score": 12,
-          "message": "Leverage 4.0x is above recommended 3x"
-        },
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 46.9% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 91.1% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 7 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "fail",
-          "score": 16,
-          "message": "15 trades in the last 15 minutes"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:18:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "BLOCK",
-      "risk_score": 86,
-      "risk_level": "critical",
-      "message": "Single trade notional is 41.4% of equity",
-      "checks": [
-        {
-          "name": "max_leverage",
-          "status": "warn",
-          "score": 12,
-          "message": "Leverage 4.0x is above recommended 3x"
-        },
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 41.4% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 93.2% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 8 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "fail",
-          "score": 16,
-          "message": "15 trades in the last 15 minutes"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:19:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:17:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
       "risk_score": 100,
@@ -874,19 +751,19 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 250.8% of equity"
+          "message": "Single trade notional is 235.7% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 302.9% of equity"
+          "message": "Projected BTCUSDT exposure reaches 280.8% of equity"
         },
         {
           "name": "consecutive_losses",
           "status": "fail",
           "score": 16,
-          "message": "Agent has 8 consecutive losing closes"
+          "message": "Agent has 9 consecutive losing closes"
         },
         {
           "name": "overtrading",
@@ -909,8 +786,8 @@
       ]
     },
     {
-      "timestamp": "2026-06-20T10:20:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:18:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
       "risk_score": 100,
@@ -927,19 +804,19 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 339.0% of equity"
+          "message": "Single trade notional is 331.9% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 391.2% of equity"
+          "message": "Projected BTCUSDT exposure reaches 377.0% of equity"
         },
         {
           "name": "consecutive_losses",
           "status": "fail",
           "score": 16,
-          "message": "Agent has 8 consecutive losing closes"
+          "message": "Agent has 9 consecutive losing closes"
         },
         {
           "name": "overtrading",
@@ -962,8 +839,8 @@
       ]
     },
     {
-      "timestamp": "2026-06-20T10:21:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:19:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
       "risk_score": 100,
@@ -980,19 +857,19 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 438.5% of equity"
+          "message": "Single trade notional is 443.5% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 490.4% of equity"
+          "message": "Projected BTCUSDT exposure reaches 488.6% of equity"
         },
         {
           "name": "consecutive_losses",
           "status": "fail",
           "score": 16,
-          "message": "Agent has 8 consecutive losing closes"
+          "message": "Agent has 9 consecutive losing closes"
         },
         {
           "name": "overtrading",
@@ -1015,8 +892,8 @@
       ]
     },
     {
-      "timestamp": "2026-06-20T10:22:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:20:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
       "risk_score": 100,
@@ -1033,19 +910,19 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 553.5% of equity"
+          "message": "Single trade notional is 570.6% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 605.6% of equity"
+          "message": "Projected BTCUSDT exposure reaches 615.7% of equity"
         },
         {
           "name": "consecutive_losses",
           "status": "fail",
           "score": 16,
-          "message": "Agent has 8 consecutive losing closes"
+          "message": "Agent has 9 consecutive losing closes"
         },
         {
           "name": "overtrading",
@@ -1068,172 +945,8 @@
       ]
     },
     {
-      "timestamp": "2026-06-20T10:23:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "WARN",
-      "risk_score": 74,
-      "risk_level": "high",
-      "message": "Single trade notional is 39.1% of equity",
-      "checks": [
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 39.1% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 91.3% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 8 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "fail",
-          "score": 16,
-          "message": "15 trades in the last 15 minutes"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:24:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "BLOCK",
-      "risk_score": 86,
-      "risk_level": "critical",
-      "message": "Single trade notional is 62.5% of equity",
-      "checks": [
-        {
-          "name": "max_leverage",
-          "status": "warn",
-          "score": 12,
-          "message": "Leverage 4.0x is above recommended 3x"
-        },
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 62.5% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 101.5% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 9 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "fail",
-          "score": 16,
-          "message": "15 trades in the last 15 minutes"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:27:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "BLOCK",
-      "risk_score": 86,
-      "risk_level": "critical",
-      "message": "Single trade notional is 52.2% of equity",
-      "checks": [
-        {
-          "name": "max_leverage",
-          "status": "warn",
-          "score": 12,
-          "message": "Leverage 4.0x is above recommended 3x"
-        },
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 52.2% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 73.1% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 11 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "fail",
-          "score": 16,
-          "message": "15 trades in the last 15 minutes"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:30:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "BLOCK",
-      "risk_score": 96,
-      "risk_level": "critical",
-      "message": "Single trade notional is 41.9% of equity",
-      "checks": [
-        {
-          "name": "max_leverage",
-          "status": "warn",
-          "score": 12,
-          "message": "Leverage 4.0x is above recommended 3x"
-        },
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 41.9% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 70.6% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 13 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "fail",
-          "score": 16,
-          "message": "15 trades in the last 15 minutes"
-        },
-        {
-          "name": "revenge_trading_detector",
-          "status": "warn",
-          "score": 10,
-          "message": "Possible loss-chasing behavior detected"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:32:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:30:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
       "risk_score": 100,
@@ -1250,195 +963,13 @@
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 389.7% of equity"
+          "message": "Single trade notional is 388.8% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 431.3% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 14 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "fail",
-          "score": 16,
-          "message": "15 trades in the last 15 minutes"
-        },
-        {
-          "name": "revenge_trading_detector",
-          "status": "fail",
-          "score": 24,
-          "message": "Position size increased sharply after consecutive losses"
-        },
-        {
-          "name": "confidence_mismatch",
-          "status": "fail",
-          "score": 14,
-          "message": "Low-confidence intent has an oversized notional"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:33:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "BLOCK",
-      "risk_score": 100,
-      "risk_level": "critical",
-      "message": "Leverage 8.0x exceeds max 5x",
-      "checks": [
-        {
-          "name": "max_leverage",
-          "status": "fail",
-          "score": 28,
-          "message": "Leverage 8.0x exceeds max 5x"
-        },
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 392.4% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 434.3% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 14 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "fail",
-          "score": 16,
-          "message": "15 trades in the last 15 minutes"
-        },
-        {
-          "name": "revenge_trading_detector",
-          "status": "fail",
-          "score": 24,
-          "message": "Position size increased sharply after consecutive losses"
-        },
-        {
-          "name": "confidence_mismatch",
-          "status": "fail",
-          "score": 14,
-          "message": "Low-confidence intent has an oversized notional"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:35:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "WARN",
-      "risk_score": 74,
-      "risk_level": "high",
-      "message": "Single trade notional is 39.1% of equity",
-      "checks": [
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 39.1% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 91.3% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 15 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "fail",
-          "score": 16,
-          "message": "15 trades in the last 15 minutes"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:36:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "BLOCK",
-      "risk_score": 86,
-      "risk_level": "critical",
-      "message": "Single trade notional is 62.8% of equity",
-      "checks": [
-        {
-          "name": "max_leverage",
-          "status": "warn",
-          "score": 12,
-          "message": "Leverage 4.0x is above recommended 3x"
-        },
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 62.8% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 102.1% of equity"
-        },
-        {
-          "name": "consecutive_losses",
-          "status": "fail",
-          "score": 16,
-          "message": "Agent has 16 consecutive losing closes"
-        },
-        {
-          "name": "overtrading",
-          "status": "fail",
-          "score": 16,
-          "message": "15 trades in the last 15 minutes"
-        }
-      ]
-    },
-    {
-      "timestamp": "2026-06-20T10:39:00Z",
-      "agent_id": "demo_momentum_agent",
-      "symbol": "BTCUSDT",
-      "decision": "BLOCK",
-      "risk_score": 96,
-      "risk_level": "critical",
-      "message": "Single trade notional is 52.4% of equity",
-      "checks": [
-        {
-          "name": "max_leverage",
-          "status": "warn",
-          "score": 12,
-          "message": "Leverage 4.0x is above recommended 3x"
-        },
-        {
-          "name": "max_single_notional",
-          "status": "fail",
-          "score": 24,
-          "message": "Single trade notional is 52.4% of equity"
-        },
-        {
-          "name": "symbol_exposure",
-          "status": "fail",
-          "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 110.1% of equity"
+          "message": "Projected BTCUSDT exposure reaches 448.5% of equity"
         },
         {
           "name": "consecutive_losses",
@@ -1454,44 +985,50 @@
         },
         {
           "name": "revenge_trading_detector",
-          "status": "warn",
-          "score": 10,
-          "message": "Possible loss-chasing behavior detected"
+          "status": "fail",
+          "score": 24,
+          "message": "Position size increased sharply after consecutive losses"
+        },
+        {
+          "name": "confidence_mismatch",
+          "status": "fail",
+          "score": 14,
+          "message": "Low-confidence intent has an oversized notional"
         }
       ]
     },
     {
-      "timestamp": "2026-06-20T10:42:00Z",
-      "agent_id": "demo_momentum_agent",
+      "timestamp": "2026-06-22T16:31:00Z",
+      "agent_id": "paper_momentum_agent_bitget_snapshot",
       "symbol": "BTCUSDT",
       "decision": "BLOCK",
-      "risk_score": 96,
+      "risk_score": 100,
       "risk_level": "critical",
-      "message": "Single trade notional is 42.0% of equity",
+      "message": "Leverage 8.0x exceeds max 5x",
       "checks": [
         {
           "name": "max_leverage",
-          "status": "warn",
-          "score": 12,
-          "message": "Leverage 4.0x is above recommended 3x"
+          "status": "fail",
+          "score": 28,
+          "message": "Leverage 8.0x exceeds max 5x"
         },
         {
           "name": "max_single_notional",
           "status": "fail",
           "score": 24,
-          "message": "Single trade notional is 42.0% of equity"
+          "message": "Single trade notional is 388.8% of equity"
         },
         {
           "name": "symbol_exposure",
           "status": "fail",
           "score": 18,
-          "message": "Projected BTCUSDT exposure reaches 123.4% of equity"
+          "message": "Projected BTCUSDT exposure reaches 448.5% of equity"
         },
         {
           "name": "consecutive_losses",
           "status": "fail",
           "score": 16,
-          "message": "Agent has 20 consecutive losing closes"
+          "message": "Agent has 18 consecutive losing closes"
         },
         {
           "name": "overtrading",
@@ -1501,19 +1038,24 @@
         },
         {
           "name": "revenge_trading_detector",
-          "status": "warn",
-          "score": 10,
-          "message": "Possible loss-chasing behavior detected"
+          "status": "fail",
+          "score": 24,
+          "message": "Position size increased sharply after consecutive losses"
+        },
+        {
+          "name": "confidence_mismatch",
+          "status": "fail",
+          "score": 14,
+          "message": "Low-confidence intent has an oversized notional"
         }
       ]
     }
   ],
   "top_risk_findings": [
-    "Blocked 22 high-risk intents before simulated execution",
-    "Flagged 4 elevated-risk intents for audit",
-    "Single trade notional is 52.2% of equity",
-    "Single trade notional is 41.8% of equity",
-    "Single trade notional is 47.0% of equity"
+    "Blocked 14 high-risk intents before simulated execution",
+    "Single trade notional is 46.6% of equity",
+    "Single trade notional is 57.0% of equity",
+    "Leverage 7.0x exceeds max 5x"
   ],
   "trade_log_path": "samples/outputs/sample_trade_log.jsonl",
   "api_call_log_path": "samples/outputs/sample_api_calls.jsonl",

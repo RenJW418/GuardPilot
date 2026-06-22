@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from time import perf_counter
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from guardpilot.config import settings
+from guardpilot.core.market_context import MarketContextProvider
 from guardpilot.core.risk_engine import RiskContext, RiskEngine
 from guardpilot.integrations.agent_hub_adapter import AgentHubAdapter
 from guardpilot.integrations.bitget_adapter import BitgetAdapter
@@ -16,8 +17,8 @@ router = APIRouter(prefix="/api/v1/bitget", tags=["bitget"])
 _agent_hub_adapter = AgentHubAdapter()
 _bitget_adapter = BitgetAdapter()
 _risk_engine = RiskEngine()
+_market_context = MarketContextProvider()
 _demo_account = Account(balance=settings.initial_balance, equity=settings.initial_balance, peak_equity=settings.initial_balance)
-_demo_prices = {"BTCUSDT": 65000.0, "ETHUSDT": 3500.0}
 
 
 @router.post("/dry-run")
@@ -30,12 +31,16 @@ def bitget_dry_run(payload: dict) -> dict:
     start = perf_counter()
     intent_payload = _agent_hub_adapter.to_guardpilot_intent(payload)
     intent = TradeIntent(**intent_payload)
-    price = intent.price_hint or _demo_prices.get(intent.symbol, 100.0)
+    try:
+        market = _market_context.for_intent(intent.symbol, intent.timestamp, intent.price_hint)
+    except (FileNotFoundError, ValueError) as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    price = market.price
     context = RiskContext(
         account=_demo_account,
         recent_trades=[],
         current_price=price,
-        recent_volatility=0.012,
+        recent_volatility=market.recent_volatility,
         initial_balance=settings.initial_balance,
     )
     risk = _risk_engine.evaluate(intent, context)
@@ -79,7 +84,12 @@ def bitget_dry_run(payload: dict) -> dict:
         "checks": [check.model_dump() for check in risk.checks],
         "forwarding_status": forwarding_status,
         "bitget_dry_run": bitget_payload,
-        "live_forwarding": "opt_in_disabled_for_hackathon_submission",
+        "market_context": market.model_dump(),
+        "execution_mode": "paper_trading_only",
+        "live_forwarding": {
+            "enabled": False,
+            "reason": "Hackathon submission is paper-trading/dry-run only. No private keys, real funds, or live Bitget orders are used.",
+        },
     }
 
 

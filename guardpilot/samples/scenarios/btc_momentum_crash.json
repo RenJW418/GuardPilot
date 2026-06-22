@@ -1,8 +1,10 @@
 {
   "scenario_id": "btc_momentum_crash",
   "initial_balance": 10000,
-  "market_data": "samples/market/btcusdt_1m.csv",
-  "agent_signals": "samples/agents/demo_momentum_signals.jsonl",
+  "market_data": "samples/market/bitget_btcusdt_1m.csv",
+  "market_data_provenance": "samples/market/bitget_btcusdt_1m.provenance.json",
+  "agent_signals": "samples/agents/paper_momentum_agent_signals_from_bitget_snapshot.jsonl",
+  "agent_signals_provenance": "samples/agents/paper_momentum_agent_signals_from_bitget_snapshot.provenance.json",
   "risk_profile": "configs/risk_profiles/default.yaml",
   "outputs": {
     "trade_log": "samples/outputs/sample_trade_log.jsonl",

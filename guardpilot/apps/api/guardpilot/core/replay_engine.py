@@ -3,18 +3,15 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
-import shutil
-from dataclasses import asdict
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 from guardpilot.config import ROOT_DIR, settings
 from guardpilot.core.metrics import max_drawdown, profit_factor, sharpe_like, win_rate
-from guardpilot.core.paper_engine import PaperTradingEngine
+from guardpilot.core.paper_engine import PaperTradingEngine, reset_order_counter
 from guardpilot.core.risk_engine import RiskContext, RiskEngine, RiskProfile
 from guardpilot.core.scoring import grade_for
-from guardpilot.demo_agents.momentum_agent import generate_market_csv, generate_signal_jsonl
 from guardpilot.models.account import Account
 from guardpilot.models.intent import TradeIntent
 from guardpilot.storage.jsonl_logger import JsonlLogger
@@ -27,9 +24,10 @@ class ReplayEngine:
         self.paper_engine = PaperTradingEngine()
 
     def run(self, scenario_path: str | Path) -> dict[str, Any]:
+        reset_order_counter()
         scenario_file = self._resolve(scenario_path)
         scenario = json.loads(scenario_file.read_text(encoding="utf-8"))
-        self._ensure_sample_inputs(scenario)
+        self._validate_inputs_exist(scenario)
         market_rows = self._load_market(self._resolve(scenario["market_data"]))
         signals = self._load_signals(self._resolve(scenario["agent_signals"]))
         profile = self._load_profile(self._resolve(scenario["risk_profile"]))
@@ -58,8 +56,6 @@ class ReplayEngine:
         api_calls: list[dict[str, Any]] = []
         risk_events: list[dict[str, Any]] = []
         decisions = {"ALLOW": 0, "WARN": 0, "BLOCK": 0}
-
-        prices = {row["timestamp"]: float(row["close"]) for row in market_rows}
 
         for index, signal in enumerate(signals, start=1):
             intent = TradeIntent(**signal)
@@ -146,6 +142,7 @@ class ReplayEngine:
             "blocked_intent_rate": round(blocked_ratio, 4),
             "audit_records_generated": len(clean_guarded_trades) + len(api_calls) + len(risk_events),
         }
+        data_provenance = self._data_provenance(scenario)
         report = {
             "report_id": f"rep_{scenario['scenario_id']}_001",
             "scenario_id": scenario["scenario_id"],
@@ -163,6 +160,7 @@ class ReplayEngine:
             "average_risk_score": round(average_risk_score, 2),
             "residual_risk_score_after_guard": round(residual_risk_score, 2),
             "impact_metrics": impact_metrics,
+            "data_provenance": data_provenance,
             "win_rate": round(win_rate(clean_guarded_trades), 4),
             "profit_factor": round(profit_factor(clean_guarded_trades), 4),
             "sharpe_like": round(sharpe_like(guarded_account.equity_curve), 4),
@@ -189,6 +187,7 @@ class ReplayEngine:
             "max_drawdown_without_guard": report["max_drawdown_without_guard"],
             "risk_grade": report["risk_grade"],
             "impact_metrics": impact_metrics,
+            "data_provenance": data_provenance,
             "report_path": str(output_paths["risk_report"].relative_to(self.root_dir)),
             "evidence_manifest_path": str(manifest_path.relative_to(self.root_dir)),
         }
@@ -243,6 +242,10 @@ class ReplayEngine:
             "risk_report": output_paths["risk_report"],
             "summary": output_paths["summary"],
         }
+        if scenario.get("market_data_provenance"):
+            evidence_files["market_data_provenance"] = self._resolve(scenario["market_data_provenance"])
+        if scenario.get("agent_signals_provenance"):
+            evidence_files["agent_signals_provenance"] = self._resolve(scenario["agent_signals_provenance"])
         files = {}
         for key, path in evidence_files.items():
             files[key] = {
@@ -268,6 +271,7 @@ class ReplayEngine:
                 "audit_records_generated": report["impact_metrics"]["audit_records_generated"],
             },
             "impact_metrics": report["impact_metrics"],
+            "data_provenance": report["data_provenance"],
             "files": files,
         }
 
@@ -289,17 +293,59 @@ class ReplayEngine:
         with path.open("r", encoding="utf-8") as handle:
             return max(sum(1 for _ in handle) - 1, 0)
 
-    def _ensure_sample_inputs(self, scenario: dict[str, Any]) -> None:
-        market_path = self._resolve(scenario["market_data"])
-        signal_path = self._resolve(scenario["agent_signals"])
-        if not market_path.exists():
-            symbol = "ETHUSDT" if "eth" in market_path.name.lower() else "BTCUSDT"
-            start_price = 3500 if symbol == "ETHUSDT" else 65000
-            generate_market_csv(market_path, symbol=symbol, start_price=start_price)
-        if not signal_path.exists():
-            generate_signal_jsonl(signal_path)
-            if "risky" in signal_path.name:
-                shutil.copyfile(self.root_dir / "samples" / "agents" / "demo_momentum_signals.jsonl", signal_path)
+    def _validate_inputs_exist(self, scenario: dict[str, Any]) -> None:
+        required = {
+            "market data snapshot": scenario.get("market_data"),
+            "agent signals": scenario.get("agent_signals"),
+            "risk profile": scenario.get("risk_profile"),
+        }
+        if scenario.get("market_data_provenance"):
+            required["market data provenance"] = scenario["market_data_provenance"]
+        if scenario.get("agent_signals_provenance"):
+            required["agent signals provenance"] = scenario["agent_signals_provenance"]
+        missing = []
+        for label, raw_path in required.items():
+            if not raw_path:
+                missing.append(f"{label}: <not configured>")
+                continue
+            path = self._resolve(raw_path)
+            if not path.exists():
+                missing.append(f"{label}: {raw_path}")
+        if missing:
+            raise FileNotFoundError(
+                "Replay inputs are missing; GuardPilot no longer auto-generates synthetic market data. "
+                "Run `python3 scripts/fetch_bitget_snapshot.py` and `python3 scripts/build_paper_agent_signals.py`, "
+                "or use the committed Bitget public snapshot. Missing: " + "; ".join(missing)
+            )
+
+    def _data_provenance(self, scenario: dict[str, Any]) -> dict[str, Any]:
+        market_provenance = scenario.get("market_data_provenance")
+        signal_provenance = scenario.get("agent_signals_provenance")
+        market_data = scenario.get("market_data")
+        payload = {
+            "market_data_source": "Bitget public market API snapshot",
+            "market_data_file": market_data,
+            "market_data_provenance_file": market_provenance,
+            "agent_signal_source": "Paper-agent signals derived from Bitget public market snapshot",
+            "agent_signals_file": scenario.get("agent_signals"),
+            "agent_signals_provenance_file": signal_provenance,
+            "execution_mode": "paper_trading_only",
+            "live_orders": False,
+        }
+        if market_provenance:
+            metadata = json.loads(self._resolve(market_provenance).read_text(encoding="utf-8"))
+            payload.update(
+                {
+                    "market_source_endpoint": metadata.get("endpoint"),
+                    "market_symbol": metadata.get("symbol"),
+                    "market_granularity": metadata.get("granularity"),
+                    "market_rows": metadata.get("rows"),
+                    "market_sha256": metadata.get("sha256"),
+                    "market_time_start": metadata.get("exchange_time_start"),
+                    "market_time_end": metadata.get("exchange_time_end"),
+                }
+            )
+        return payload
 
     @staticmethod
     def _load_market(path: Path) -> list[dict[str, str]]:

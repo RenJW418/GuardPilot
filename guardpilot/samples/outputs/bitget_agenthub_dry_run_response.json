@@ -1,0 +1,223 @@
+{
+  "title": "GuardPilot Bitget AI Agent-style dry-run contract evidence",
+  "description": "Credential-free evidence that Agent Hub / Playbook / Skill Hub / MCP-style signals are normalized, risk-gated, and only forwarded as Bitget-compatible dry-run previews when not blocked.",
+  "agent_surfaces_covered": [
+    "Agent Hub Tools",
+    "Skill Hub signal context",
+    "Bitget Playbook strategy output",
+    "MCP Server order-tool boundary"
+  ],
+  "live_exchange_orders": false,
+  "cases": [
+    {
+      "case_id": "agenthub_style_blocked_risky_payload",
+      "expected_gate": "BLOCK",
+      "source_payload": "samples/agents/bitget_agenthub_payload.json",
+      "agent_surface": "Agent Hub Tools + Skill Hub + Playbook + MCP Server style boundary",
+      "skill_context": "technical-analysis + sentiment-analyst detected breakout recovery, but funding, volatility, and recent loss context increased execution risk",
+      "guardpilot_intent": {
+        "timestamp": "2026-06-22T16:08:00Z",
+        "agent_id": "bitget_playbook_momentum_agent",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "order_type": "MARKET",
+        "quantity": 0.2,
+        "leverage": 10.0,
+        "confidence": 0.2,
+        "reason": "Bitget Agent Hub / Playbook style signal | Playbook-style agent generated an aggressive momentum recovery order, requiring GuardPilot pre-trade review before any order tool receives a payload | Bitget context: technical-analysis + sentiment-analyst detected breakout recovery, but funding, volatility, and recent loss context increased execution risk",
+        "price_hint": null
+      },
+      "risk_decision": "BLOCK",
+      "risk_score": 84,
+      "risk_level": "critical",
+      "checks": [
+        {
+          "name": "max_leverage",
+          "status": "fail",
+          "score": 28,
+          "message": "Leverage 10.0x exceeds max 5x"
+        },
+        {
+          "name": "max_single_notional",
+          "status": "fail",
+          "score": 24,
+          "message": "Single trade notional is 1293.8% of equity"
+        },
+        {
+          "name": "symbol_exposure",
+          "status": "fail",
+          "score": 18,
+          "message": "Projected BTCUSDT exposure reaches 1293.8% of equity"
+        },
+        {
+          "name": "daily_loss_limit",
+          "status": "pass",
+          "score": 0,
+          "message": "Daily loss is within limit"
+        },
+        {
+          "name": "consecutive_losses",
+          "status": "pass",
+          "score": 0,
+          "message": "No dangerous loss streak detected"
+        },
+        {
+          "name": "overtrading",
+          "status": "pass",
+          "score": 0,
+          "message": "Trading frequency is normal"
+        },
+        {
+          "name": "revenge_trading_detector",
+          "status": "pass",
+          "score": 0,
+          "message": "No revenge trading pattern detected"
+        },
+        {
+          "name": "volatility_risk",
+          "status": "pass",
+          "score": 0,
+          "message": "Volatility is normal"
+        },
+        {
+          "name": "confidence_mismatch",
+          "status": "fail",
+          "score": 14,
+          "message": "Low-confidence intent has an oversized notional"
+        }
+      ],
+      "forwarding_status": "BLOCKED_BY_GUARDPILOT",
+      "bitget_dry_run": null,
+      "market_context": {
+        "symbol": "BTCUSDT",
+        "price": 64691.19,
+        "recent_volatility": 0.0013547138940137196,
+        "source": "Bitget public market API snapshot",
+        "market_timestamp": "2026-06-22T16:08:00Z",
+        "snapshot_path": "samples/market/bitget_btcusdt_1m.csv",
+        "price_source": "bitget_public_snapshot_close"
+      },
+      "execution_mode": "paper_trading_only",
+      "live_forwarding": {
+        "enabled": false,
+        "reason": "Hackathon evidence is dry-run/paper-only; no private keys, real funds, or live orders are used."
+      },
+      "latency_ms": 1
+    },
+    {
+      "case_id": "agenthub_style_allowed_safe_payload",
+      "expected_gate": "ALLOW_OR_WARN_WITH_DRY_RUN_PAYLOAD",
+      "source_payload": "samples/agents/bitget_agenthub_safe_payload.json",
+      "agent_surface": "Agent Hub Tools + Skill Hub + Playbook + MCP Server style boundary",
+      "skill_context": "technical-analysis confirmed low-volatility trend continuation; sentiment-analyst detected neutral funding and no crowding risk",
+      "guardpilot_intent": {
+        "timestamp": "2026-06-22T16:15:00Z",
+        "agent_id": "bitget_playbook_conservative_agent",
+        "symbol": "BTCUSDT",
+        "side": "BUY",
+        "order_type": "MARKET",
+        "quantity": 0.005,
+        "leverage": 1.0,
+        "confidence": 0.82,
+        "reason": "Bitget Agent Hub / Playbook style signal | Playbook-style agent generated a small conservative BTCUSDT test order; GuardPilot should create a dry-run payload only after risk review | Bitget context: technical-analysis confirmed low-volatility trend continuation; sentiment-analyst detected neutral funding and no crowding risk",
+        "price_hint": null
+      },
+      "risk_decision": "ALLOW",
+      "risk_score": 0,
+      "risk_level": "low",
+      "checks": [
+        {
+          "name": "max_leverage",
+          "status": "pass",
+          "score": 0,
+          "message": "Leverage is within limit"
+        },
+        {
+          "name": "max_single_notional",
+          "status": "pass",
+          "score": 0,
+          "message": "Single trade notional is acceptable"
+        },
+        {
+          "name": "symbol_exposure",
+          "status": "pass",
+          "score": 0,
+          "message": "Symbol exposure is diversified enough"
+        },
+        {
+          "name": "daily_loss_limit",
+          "status": "pass",
+          "score": 0,
+          "message": "Daily loss is within limit"
+        },
+        {
+          "name": "consecutive_losses",
+          "status": "pass",
+          "score": 0,
+          "message": "No dangerous loss streak detected"
+        },
+        {
+          "name": "overtrading",
+          "status": "pass",
+          "score": 0,
+          "message": "Trading frequency is normal"
+        },
+        {
+          "name": "revenge_trading_detector",
+          "status": "pass",
+          "score": 0,
+          "message": "No revenge trading pattern detected"
+        },
+        {
+          "name": "volatility_risk",
+          "status": "pass",
+          "score": 0,
+          "message": "Volatility is normal"
+        },
+        {
+          "name": "confidence_mismatch",
+          "status": "pass",
+          "score": 0,
+          "message": "Confidence and trade size are aligned"
+        }
+      ],
+      "forwarding_status": "DRY_RUN_READY_NO_LIVE_ORDER_PLACED",
+      "bitget_dry_run": {
+        "status": "DRY_RUN_READY",
+        "message": "GuardPilot generated a Bitget-compatible dry-run preview; live forwarding is intentionally disabled for safety.",
+        "execution_payload": {
+          "symbol": "BTCUSDT",
+          "side": "BUY",
+          "orderType": "MARKET",
+          "quantity": 0.005,
+          "size": 0.005,
+          "leverage": 1.0,
+          "clientTag": "guardpilot:bitget_playbook_conservative_agent",
+          "auditReason": "Bitget Agent Hub / Playbook style signal | Playbook-style agent generated a small conservative BTCUSDT test order; GuardPilot should create a dry-run payload only after risk review | Bitget context: technical-analysis confirmed low-volatility trend continuation; sentiment-analyst detected neutral funding and no crowding risk",
+          "bitgetAgentSurface": {
+            "tools": "Agent Hub trading APIs / order tools",
+            "skills": "Skill Hub market context can be embedded in the Agent reason",
+            "mcp": "MCP Server order calls should sit behind this risk decision",
+            "playbook": "Playbook strategy output can be mapped to the same guarded intent"
+          },
+          "guardpilotPolicy": "ALLOW_OR_WARN_ONLY_DRY_RUN_NO_LIVE_ORDER"
+        }
+      },
+      "market_context": {
+        "symbol": "BTCUSDT",
+        "price": 64697.3,
+        "recent_volatility": 0.0007063853776526791,
+        "source": "Bitget public market API snapshot",
+        "market_timestamp": "2026-06-22T16:15:00Z",
+        "snapshot_path": "samples/market/bitget_btcusdt_1m.csv",
+        "price_source": "bitget_public_snapshot_close"
+      },
+      "execution_mode": "paper_trading_only",
+      "live_forwarding": {
+        "enabled": false,
+        "reason": "Hackathon evidence is dry-run/paper-only; no private keys, real funds, or live orders are used."
+      },
+      "latency_ms": 0
+    }
+  ]
+}

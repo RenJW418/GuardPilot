@@ -23,8 +23,13 @@ if lsof -ti:5173 >/dev/null 2>&1; then
   exit 1
 fi
 
+PYTHON_BIN="$ROOT/.venv/bin/python"
+if [[ ! -x "$PYTHON_BIN" ]]; then
+  PYTHON_BIN="${PYTHON:-python3}"
+fi
+
 cd "$ROOT/guardpilot"
-PYTHONPATH=apps/api python3 -m uvicorn guardpilot.main:app --app-dir apps/api --reload --port 8000 > "$API_LOG" 2>&1 &
+PYTHONPATH=apps/api "$PYTHON_BIN" -m uvicorn guardpilot.main:app --app-dir apps/api --reload --port 8000 > "$API_LOG" 2>&1 &
 API_PID=$!
 
 cd "$ROOT/guardpilot/apps/web"

@@ -3,9 +3,10 @@ from __future__ import annotations
 from itertools import count
 from time import perf_counter
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from guardpilot.config import settings
+from guardpilot.core.market_context import MarketContextProvider
 from guardpilot.core.paper_engine import PaperTradingEngine
 from guardpilot.core.risk_engine import RiskContext, RiskEngine
 from guardpilot.integrations.bitget_adapter import BitgetAdapter
@@ -20,19 +21,22 @@ _recent_trades: list[dict] = []
 _risk_engine = RiskEngine()
 _paper_engine = PaperTradingEngine()
 _bitget_adapter = BitgetAdapter()
-_last_prices = {"BTCUSDT": 65000.0, "ETHUSDT": 3500.0}
+_market_context = MarketContextProvider()
 
 
 @router.post("/intents", response_model=IntentResponse)
 def submit_intent(intent: TradeIntent) -> IntentResponse:
     start = perf_counter()
-    price = intent.price_hint or _last_prices.get(intent.symbol, 100.0)
-    _last_prices[intent.symbol] = price
+    try:
+        market = _market_context.for_intent(intent.symbol, intent.timestamp, intent.price_hint)
+    except (FileNotFoundError, ValueError) as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    price = market.price
     context = RiskContext(
         account=_account,
         recent_trades=_recent_trades,
         current_price=price,
-        recent_volatility=0.012,
+        recent_volatility=market.recent_volatility,
         initial_balance=settings.initial_balance,
     )
     risk = _risk_engine.evaluate(intent, context)
@@ -87,6 +91,8 @@ def submit_intent(intent: TradeIntent) -> IntentResponse:
         account_equity_after=round(_account.equity, 4),
         checks=[check.model_dump() for check in risk.checks],
         bitget_dry_run_payload=bitget_dry_run_payload,
+        market_context=market.model_dump(),
+        execution_mode="paper_trading_only",
     )
 
 

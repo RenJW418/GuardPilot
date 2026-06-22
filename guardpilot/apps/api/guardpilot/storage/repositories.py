@@ -5,16 +5,13 @@ from pathlib import Path
 
 from guardpilot.config import settings
 from guardpilot.storage.database import Database
-from guardpilot.storage.jsonl_logger import JsonlLogger
 
 
 db = Database(settings.db_path)
-logger = JsonlLogger(settings.log_dir)
 
 
 def record_api_call(record: dict) -> None:
     db.insert("api_logs", record)
-    logger.append("sample_api_calls.jsonl", record)
 
 
 def reset_runtime_records() -> None:
@@ -44,12 +41,13 @@ def record_trade(record: dict) -> None:
         "realized_pnl", "balance_before", "balance_after", "equity_after", "risk_score", "decision", "reason"
     }}
     db.insert("trades", db_record)
-    logger.append("sample_trade_log.jsonl", record)
 
 
 def record_risk_event(record: dict) -> None:
-    db.insert("risk_events", record)
-    logger.append("sample_risk_events.jsonl", record)
+    db_record = {key: value for key, value in record.items() if key in {
+        "timestamp", "agent_id", "symbol", "decision", "risk_score", "risk_level", "message"
+    }}
+    db.insert("risk_events", db_record)
 
 
 def list_api_logs(limit: int = 200) -> list[dict]:

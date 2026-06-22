@@ -1,12 +1,14 @@
 {
   "source": "Bitget Agent Hub / Playbook style signal",
-  "timestamp": "2026-06-20T10:08:00Z",
+  "agent_surface": "Agent Hub Tools + Skill Hub + Playbook + MCP Server style boundary",
+  "skill_context": "technical-analysis + sentiment-analyst detected breakout recovery, but funding, volatility, and recent loss context increased execution risk",
+  "timestamp": "2026-06-22T16:08:00Z",
   "agent_id": "bitget_playbook_momentum_agent",
   "symbol": "BTCUSDT",
   "side": "BUY",
   "order_type": "MARKET",
-  "quantity": 0.08,
-  "leverage": 8,
-  "confidence": 0.61,
-  "reason": "Playbook detected breakout recovery signal, but recent losses and volatility require pre-trade guardrail review"
+  "quantity": 0.2,
+ "leverage": 10,
+  "confidence": 0.2,
+  "reason": "Playbook-style agent generated an aggressive momentum recovery order, requiring GuardPilot pre-trade review before any order tool receives a payload"
 }

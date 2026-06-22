@@ -11,6 +11,11 @@ from guardpilot.models.order import OrderFill
 _order_counter = count(1)
 
 
+def reset_order_counter() -> None:
+    global _order_counter
+    _order_counter = count(1)
+
+
 class PaperTradingEngine:
     def __init__(self, fee_rate: float | None = None, slippage_bps: float | None = None):
         self.fee_rate = settings.fee_rate if fee_rate is None else fee_rate

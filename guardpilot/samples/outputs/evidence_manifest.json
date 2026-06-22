@@ -1,38 +1,55 @@
 {
-  "generated_at": "2026-06-21T15:38:34Z",
+  "generated_at": "2026-06-22T18:28:21Z",
   "scenario_id": "btc_momentum_crash",
   "initial_balance": 10000,
   "totals": {
     "total_intents": 42,
-    "allowed": 16,
-    "warned": 4,
-    "blocked": 22,
-    "risk_events": 26,
-    "audit_records_generated": 110
+    "allowed": 28,
+    "warned": 0,
+    "blocked": 14,
+    "risk_events": 14,
+    "audit_records_generated": 98
   },
   "impact_metrics": {
-    "equity_improvement_usdt": 50.0973,
-    "max_drawdown_reduction_points": 1.9022,
-    "max_drawdown_reduction_relative": 0.7311,
-    "blocked_intent_rate": 0.5238,
-    "audit_records_generated": 110
+    "equity_improvement_usdt": 148.8603,
+    "max_drawdown_reduction_points": 1.614,
+    "max_drawdown_reduction_relative": 0.8568,
+    "blocked_intent_rate": 0.3333,
+    "audit_records_generated": 98
+  },
+  "data_provenance": {
+    "market_data_source": "Bitget public market API snapshot",
+    "market_data_file": "samples/market/bitget_btcusdt_1m.csv",
+    "market_data_provenance_file": "samples/market/bitget_btcusdt_1m.provenance.json",
+    "agent_signal_source": "Paper-agent signals derived from Bitget public market snapshot",
+    "agent_signals_file": "samples/agents/paper_momentum_agent_signals_from_bitget_snapshot.jsonl",
+    "agent_signals_provenance_file": "samples/agents/paper_momentum_agent_signals_from_bitget_snapshot.provenance.json",
+    "execution_mode": "paper_trading_only",
+    "live_orders": false,
+    "market_source_endpoint": "https://api.bitget.com/api/v2/spot/market/candles",
+    "market_symbol": "BTCUSDT",
+    "market_granularity": "1min",
+    "market_rows": 100,
+    "market_sha256": "45a48c41e486b06762ff7e3596ea215557fd28edefc21a82b9cb588ea3891d42",
+    "market_time_start": "2026-06-22T15:59:00Z",
+    "market_time_end": "2026-06-22T17:38:00Z"
   },
   "files": {
     "scenario": {
       "path": "samples/scenarios/btc_momentum_crash.json",
-      "sha256": "663f5d91546f1851630f7160083046c5dd088d5846c23ea9e3eff0feff17d709",
-      "bytes": 564
+      "sha256": "e0e102049513411d5a047a779fedfd6a2ee015f81e665b549a0d0be79fbdbf9e",
+      "bytes": 793
     },
     "market_data": {
-      "path": "samples/market/btcusdt_1m.csv",
-      "sha256": "d602de0e5a470e4d572bacd89b2002c836dcf82251541748297f00bbf6b07c07",
-      "bytes": 3644,
-      "rows": 50
+      "path": "samples/market/bitget_btcusdt_1m.csv",
+      "sha256": "45a48c41e486b06762ff7e3596ea215557fd28edefc21a82b9cb588ea3891d42",
+      "bytes": 7344,
+      "rows": 100
     },
     "agent_signals": {
-      "path": "samples/agents/demo_momentum_signals.jsonl",
-      "sha256": "1daa87a505433197df2dfb7f6c75dff3da104a1316b9ae7f1d183e655d14d10d",
-      "bytes": 9796,
+      "path": "samples/agents/paper_momentum_agent_signals_from_bitget_snapshot.jsonl",
+      "sha256": "e28bf4ea07ebb12abef655766123a6763acf32a5e6c9941de731e39c469715d0",
+      "bytes": 11882,
       "rows": 42
     },
     "risk_profile": {
@@ -42,31 +59,41 @@
     },
     "trade_log": {
       "path": "samples/outputs/sample_trade_log.jsonl",
-      "sha256": "0a087d1cda4216733626b80d3db896eff497f741be61d8f73475e03692fc67a8",
-      "bytes": 15354,
+      "sha256": "83a1fd9015d1c6f902d38da4d64b2babc27aec18164741723b6d5c0feadee0e1",
+      "bytes": 17266,
       "rows": 42
     },
     "api_calls": {
       "path": "samples/outputs/sample_api_calls.jsonl",
-      "sha256": "6148e55f7ace9a24085a70e9e01d16827592259272bf0638277529d3e8ef9edc",
-      "bytes": 7561,
+      "sha256": "66ed6958526d803173bd8bc2ffe6f072bfe8127d30f835045c409954e1bc347e",
+      "bytes": 8279,
       "rows": 42
     },
     "risk_events": {
       "path": "samples/outputs/sample_risk_events.jsonl",
-      "sha256": "34821f7987870fc755480b4a70d530cfb1f2541d5065a87f19fbdfe4267251b0",
-      "bytes": 20896,
-      "rows": 26
+      "sha256": "6cb6cc9e752ccbb8caa6cd07d54d9b238758963c90849b877c36eb9ad42fd736",
+      "bytes": 12518,
+      "rows": 14
     },
     "risk_report": {
       "path": "samples/outputs/sample_risk_report.json",
-      "sha256": "450011051f1d07da3fea4fd7de60049f8c4e209232097decde91cb3ef91c29fa",
-      "bytes": 40684
+      "sha256": "81b0974a6449ebac8737ddc5dc264152dce5105b453cadfd8f0f17303f11ac48",
+      "bytes": 28519
     },
     "summary": {
       "path": "samples/outputs/sample_replay_summary.json",
-      "sha256": "eee88d8312c04383946b53845d23f205a16d548be7ff92ce6abc0ed8e12c4f7a",
-      "bytes": 655
+      "sha256": "2870ef26482397dfea529ea736085d0901315ff51d48128278c9346c2a9cdb87",
+      "bytes": 1638
+    },
+    "market_data_provenance": {
+      "path": "samples/market/bitget_btcusdt_1m.provenance.json",
+      "sha256": "a0060b293d84672797da009ee7fbdb1b3dc3354227cc37f90f086488227c054c",
+      "bytes": 1111
+    },
+    "agent_signals_provenance": {
+      "path": "samples/agents/paper_momentum_agent_signals_from_bitget_snapshot.provenance.json",
+      "sha256": "9761b58bbdfb9b16de7076ebfbaeb1e33fd94811aee7935dfc354d8979f0fe4f",
+      "bytes": 552
     }
   }
 }

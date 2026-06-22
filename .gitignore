@@ -14,7 +14,11 @@ dist/
 # Local runtime artifacts
 guardpilot/guardpilot.db
 guardpilot/.api-dev.log
+# Optional local-only generated fixtures; default replay uses committed Bitget public snapshot
+legacy_deterministic/
+guardpilot/samples/legacy_deterministic/
 guardpilot/.web-dev.log
+.claude/
 *.log
 
 # Local docs / competition brief

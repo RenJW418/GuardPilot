@@ -1,0 +1,14 @@
+{
+  "source": "Bitget Agent Hub / Playbook style signal",
+  "agent_surface": "Agent Hub Tools + Skill Hub + Playbook + MCP Server style boundary",
+  "skill_context": "technical-analysis confirmed low-volatility trend continuation; sentiment-analyst detected neutral funding and no crowding risk",
+  "timestamp": "2026-06-22T16:15:00Z",
+  "agent_id": "bitget_playbook_conservative_agent",
+  "symbol": "BTCUSDT",
+  "side": "BUY",
+  "order_type": "MARKET",
+  "quantity": 0.005,
+  "leverage": 1,
+  "confidence": 0.82,
+  "reason": "Playbook-style agent generated a small conservative BTCUSDT test order; GuardPilot should create a dry-run payload only after risk review"
+}

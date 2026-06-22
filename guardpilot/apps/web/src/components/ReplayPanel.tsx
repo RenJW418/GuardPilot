@@ -19,16 +19,15 @@ type Props = {
 };
 
 const SCENARIOS: Array<{ value: ReplayScenario; label: string; hint: string }> = [
-  { value: 'btc_momentum_crash', label: 'BTC momentum crash', hint: 'recommended judge demo' },
-  { value: 'eth_overtrade', label: 'ETH overtrade', hint: 'overtrading stress test' },
+  { value: 'btc_momentum_crash', label: 'BTC Bitget snapshot replay', hint: 'recommended judge demo' },
 ];
 
 export function ReplayPanel({ onReplay, loading, summary, scenario, onScenarioChange }: Props) {
   const impact = summary?.impact_metrics;
   return (
     <div className="card">
-      <div className="section-title">Deterministic Replay</div>
-      <p>Replay sample market data and Agent intents to regenerate auditable outputs for judges.</p>
+      <div className="section-title">Reproducible Bitget Snapshot Replay</div>
+      <p>Run backend replay over the committed Bitget public-market snapshot to regenerate the latest risk report, audit records, and evidence manifest.</p>
       <label className="field-label" htmlFor="scenario">Replay scenario</label>
       <select
         id="scenario"
@@ -62,7 +61,7 @@ export function ReplayPanel({ onReplay, loading, summary, scenario, onScenarioCh
           <div><span>Report</span><strong>{summary.report_path}</strong></div>
         </div>
       )}
-      {!summary && <p className="muted">Default proof target: 42 intents, 16 / 4 / 22 decisions, max drawdown 2.60% → 0.70%.</p>}
+      {!summary && <p className="muted">No replay summary loaded yet. Run replay to evaluate paper-agent intents derived from the Bitget public snapshot.</p>}
       {summary?.evidence_manifest_path && <p className="artifact-path">Evidence manifest: {summary.evidence_manifest_path}</p>}
     </div>
   );

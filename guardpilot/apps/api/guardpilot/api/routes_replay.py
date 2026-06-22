@@ -12,7 +12,6 @@ router = APIRouter(prefix="/api/v1", tags=["replay"])
 
 SCENARIOS = {
     "btc_momentum_crash": "samples/scenarios/btc_momentum_crash.json",
-    "eth_overtrade": "samples/scenarios/eth_overtrade.json",
 }
 
 
