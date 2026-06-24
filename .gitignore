@@ -21,6 +21,13 @@ guardpilot/.web-dev.log
 .claude/
 *.log
 
+# Local demo recordings and rendered video frames
+guardpilot/reports/*.mov
+guardpilot/reports/*.mp4
+guardpilot/reports/demo_5min/
+guardpilot/reports/demo_5min_v2/
+guardpilot/reports/demo_final/
+
 # Local docs / competition brief
 比赛要求.md
 
