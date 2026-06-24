@@ -1,6 +1,7 @@
 import type { ReplayScenario, ReplaySummary, RiskReport } from './types';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const configuredApiBase = import.meta.env.VITE_API_BASE_URL;
+const API_BASE = configuredApiBase === undefined ? 'http://localhost:8000' : configuredApiBase;
 
 export async function fetchJson<T>(path: string): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`);

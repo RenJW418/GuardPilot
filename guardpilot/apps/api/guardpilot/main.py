@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from guardpilot.api.routes_agents import router as agents_router
 from guardpilot.api.routes_bitget import router as bitget_router
@@ -34,3 +37,7 @@ app.include_router(trades_router)
 app.include_router(reports_router)
 app.include_router(logs_router)
 app.include_router(replay_router)
+
+web_dist = Path(__file__).resolve().parents[3] / "apps" / "web" / "dist"
+if web_dist.exists():
+    app.mount("/", StaticFiles(directory=web_dist, html=True), name="web")

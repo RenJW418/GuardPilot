@@ -1,0 +1,17 @@
+.git
+.venv
+node_modules
+**/node_modules
+**/dist
+**/.vite
+**/__pycache__
+**/.pytest_cache
+*.log
+.DS_Store
+
+# Local recordings and generated frame dumps
+guardpilot/reports/*.mov
+guardpilot/reports/*.mp4
+guardpilot/reports/demo_5min/
+guardpilot/reports/demo_5min_v2/
+guardpilot/reports/demo_final/

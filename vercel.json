@@ -1,0 +1,6 @@
+{
+  "installCommand": "cd guardpilot/apps/web && npm ci",
+  "buildCommand": "cd guardpilot/apps/web && npm run build",
+  "outputDirectory": "guardpilot/apps/web/dist",
+  "framework": "vite"
+}
