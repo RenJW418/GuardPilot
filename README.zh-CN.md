@@ -5,6 +5,23 @@
 > Bitget AI Base Camp Hackathon S1 · Trading Infra 赛道项目
 > 面向自主交易 Agent 的交易前风控网关、纸交易沙盒和审计证据层。
 
+## 项目信息
+
+| 字段 | 内容 |
+|---|---|
+| 作品名 | **GuardPilot** |
+| 作者 | **添财交易员** |
+| 学校 | **北京大学 Peking University** |
+| 赛道 | Bitget AI Base Camp Hackathon S1 · Trading Infra |
+
+GuardPilot 用来保护自主交易 Agent 在接触 order-capable tools 之前的关键边界。它把 AI Agent 提出的交易意图转换成可度量的策略决策，并记录市场数据、风险检查、dry-run 响应和可复现 evidence，方便评委和开发者审计。
+
+## 为什么适合 Bitget AI Agent 生态
+
+Bitget Agent Hub、MCP Server 和 Playbook-style 策略生成，让 AI Agent 更容易读取市场上下文并调用交易工具。但这也带来一个安全边界问题：Agent 生成交易意图的速度，可能快于人工检查速度。
+
+GuardPilot 正是为这个边界设计的。它可以接在 Bitget AI Agent workflow 和 order-capable tools 之间，在任何下游订单 payload 生成之前返回 `ALLOW`、`WARN` 或 `BLOCK`。
+
 GuardPilot **不是交易机器人**。它接在自主交易 Agent 和任何 order-capable 工具之间，对每个交易意图进行风险评分，并在执行前返回 `ALLOW`、`WARN` 或 `BLOCK`。最终提交版本默认使用 **Bitget 官方公开行情快照**，并提供 SHA-256 provenance；Agent intents 是基于该真实行情快照派生的 paper-agent 信号。
 
 ```text

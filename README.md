@@ -5,6 +5,23 @@
 > Bitget AI Base Camp Hackathon S1 · Trading Infra
 > Pre-trade risk gateway, paper-trading sandbox, and audit evidence layer for autonomous trading agents.
 
+## Project identity
+
+| Field | Details |
+|---|---|
+| Work name | **GuardPilot** |
+| Author | **Tiancai Trader** |
+| Affiliation | **Peking University** |
+| Track | Bitget AI Base Camp Hackathon S1 · Trading Infra |
+
+GuardPilot protects autonomous trading workflows before they touch order-capable tools. It turns an AI Agent's proposed trade into a measurable policy decision, then records the market data, risk checks, dry-run response, and replay evidence needed for review.
+
+## Why this matters for Bitget AI Agents
+
+Bitget Agent Hub, MCP Server, and Playbook-style strategy generation make it easier for AI Agents to reason about markets and call trading tools. That also creates a safety boundary problem: an Agent can form a trade intent faster than a human can inspect it.
+
+GuardPilot is designed for that boundary. It can sit between Bitget AI Agent workflows and order-capable tools, returning `ALLOW`, `WARN`, or `BLOCK` before any downstream order payload is produced.
+
 GuardPilot is **not a trading bot**. It sits between an autonomous trading Agent and any order-capable tool, evaluates every trade intent, and returns `ALLOW`, `WARN`, or `BLOCK` before execution. The final hackathon demo uses a **recorded Bitget public market data snapshot** with SHA-256 provenance, then runs paper-agent intents derived from that snapshot through paper trading and risk controls.
 
 ```text
