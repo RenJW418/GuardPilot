@@ -4,6 +4,7 @@ WORKDIR /app/guardpilot/apps/web
 COPY guardpilot/apps/web/package*.json ./
 RUN npm ci
 COPY guardpilot/apps/web/ ./
+COPY guardpilot/samples /app/guardpilot/samples
 ARG VITE_API_BASE_URL=
 ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
 RUN npm run build
