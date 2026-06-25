@@ -10,6 +10,8 @@ venv/
 node_modules/
 dist/
 .vite/
+!guardpilot/apps/web/dist/
+!guardpilot/apps/web/dist/**
 
 # Local runtime artifacts
 guardpilot/guardpilot.db
