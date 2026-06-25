@@ -1,8 +1,9 @@
 services:
   - type: web
     name: guardpilot
-    env: docker
+    runtime: docker
     plan: free
-    autoDeploy: true
+    autoDeployTrigger: commit
     healthCheckPath: /health
     dockerfilePath: ./Dockerfile
+    dockerContext: .
